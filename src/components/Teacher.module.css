@@ -1,0 +1,152 @@
+/* teacher */
+
+.teacher .boxContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap: 2rem;
+  }
+  
+  .teacher .boxContainer .box {
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .teacher .boxContainer .box {
+    grid-gap: 2rem;
+    display: grid;
+    font-size: 3rem;
+    gap: 2rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: auto;
+    width: 100%;
+  }
+  
+  .chooseBoxContent1 {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .chooseBoxContent3 {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .chooseBoxContent2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .chooseBoxContent2 img {
+    width: 85%;
+  }
+  .chooseBox {
+    background-color: hsla(0,0%,100%,.05);
+    border: 1px solid hsla(0,0%,51%,.25);
+    border-radius: 2.4rem;
+    display: flex;
+    gap: 4rem;
+    justify-content: center;
+    padding: 2.4rem;
+    width: 100%;
+  }
+
+  .chooseBox i {
+    align-items: center;
+    background: linear-gradient(25deg,#4f979d,#3197ad);
+    color: #efefef;
+    border-radius: 1.6rem;
+    display: flex;
+    height: 6rem;
+    padding: 1.5rem;
+    width: 6rem;
+  }
+
+  .chooseBox h4 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  .chooseBox p {
+    color: #444;
+    font-size: 1.8rem;
+    margin-top: 1rem;
+    text-align: left;
+  }
+  .teacher .boxContainer .box .image {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .teacher .boxContainer .box .image img {
+    background: var(--secondary);
+    width: 100%;
+  }
+  
+  .teacher .boxContainer .box:hover .image .share {
+    bottom: 0;
+  }
+  
+  .teacher .boxContainer .box .image .share {
+    position: absolute;
+    bottom: -10rem;
+    left: 0;
+    right: 0;
+    padding: 2rem;
+  }
+  
+  .teacher .boxContainer .box .image .share a {
+    height: 4rem;
+    width: 4rem;
+    line-height: 4rem;
+    font-size: 2rem;
+    margin: 0 1rem;
+    color: var(--secondary);
+    background: var(--primary-color);
+    border-radius: 0.5rem;
+  }
+  
+  .teacher .boxContainer .box .image .share a:hover {
+    color: var(--primary-color);
+    background: var(--secondary);
+  }
+  
+  .teacher .boxContainer .box .content {
+    padding: 2rem;
+    padding-top: 1rem;
+    align-items: center;
+  }
+  
+  .teacher .boxContainer .box .content h3 {
+    font-size: 2rem;
+    color: var(--black);
+  }
+  
+  .teacher .boxContainer .box .content span {
+    font-size: 1.5rem;
+    line-height: 2;
+    color: #777;
+  }
+
+@media (max-width: 1250px) {
+  .teacher .boxContainer .box {
+    grid-template-columns: none;
+  }
+
+  .chooseBoxContent2 img {
+    width: 60%;
+  }
+
+  .chooseBoxContent2 {
+    display: block;
+  }
+}
+  

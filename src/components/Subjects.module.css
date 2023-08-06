@@ -1,0 +1,51 @@
+/* subjects */
+
+.subjects .boxContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap: 2rem;
+  }
+  
+  .subjects .boxContainer .box {
+    padding: 3rem 2rem;
+    text-align: center;
+    border: 0.1rem solid var(--primary-color);
+    background: var(--secondary);
+    cursor: pointer;
+  }
+  
+  .subjects .boxContainer .box:hover {
+    background: var(--primary-color);
+  }
+  
+  .subjects .boxContainer .box img {
+    height: 10rem;
+    margin-bottom: 0.7rem;
+  }
+  
+  .subjects .boxContainer .box h3 {
+    font-size: 1.7rem;
+    color: #444;
+    padding: 0.5rem 0;
+    text-transform: capitalize;
+  }
+  
+  .subjects .boxContainer .box:hover h3 {
+    color: #fff;
+  }
+  
+  .subjects .boxContainer .box p {
+    font-size: 1.5rem;
+    line-height: 2;
+    color: #777;
+  }
+  
+  .subjects .boxContainer .box:hover p {
+    color: #eee;
+  }
+  
+  @media (min-width: 740px) and (max-width: 1240px) {
+    .subjects .boxContainer {
+      grid-template-columns: 1fr 1fr;
+    }
+  }

@@ -1,0 +1,82 @@
+/* contact */
+
+.contact .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+  .contact .row .image {
+    flex: 1 1 40rem;
+  }
+  
+  .contact .row .image img {
+    width: 100%;
+  }
+  
+  .contact .row form {
+    flex: 1 1 40rem;
+    border: 0.1rem solid var(--primary-color);
+    padding: 2rem;
+  }
+  
+  .contact .row form h3 {
+    font-size: 2.5rem;
+    color: #444;
+    padding-bottom: 1rem;
+  }
+  
+  .contact .row form .box {
+    width: 100%;
+    font-size: 1.6rem;
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 1.5rem;
+    background: var(--white);
+    border: 0.1rem solid var(--primary-color);
+    color: #444;
+    border-radius: 2rem;
+  }
+  
+  .contact .row form .box textarea {
+    resize: none;
+    height: 10rem;
+  }
+  
+  .contact .row form .box .btn {
+    width: 100%;
+    padding: 1.5rem;
+    background: var(--primary-color);
+    color: #fff;
+    font-size: 1.6rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 2rem;
+  }
+  
+  .contact .info .box {
+    flex: 1 1 30rem;
+    text-align: center;
+    padding: 2rem;
+    box-shadow: var(--box-shadow);
+    border-radius: 2rem;
+  }
+  
+  .contact .info .box i {
+    font-size: 4rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+  }
+  
+  .contact .info .box h3 {
+    font-size: 1.8rem;
+    color: var(--black);
+    padding-bottom: 1rem;
+  }
+  
+  .contact .info .box p {
+    font-size: 1.5rem;
+    color: #777;
+    line-height: 1.8;
+  }
+  

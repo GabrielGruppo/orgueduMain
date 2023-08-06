@@ -1,0 +1,73 @@
+/* footer */
+
+.footer {
+    background: var(--secondary);
+    text-align: center;
+  }
+  
+  .footer .boxContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap: 2rem;
+  }
+  
+  .footer .boxContainer .box h3 {
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    padding: 1rem 0;
+  }
+  
+  .footer .boxContainer .box p {
+    font-size: 1.5rem;
+    color: var(--black);
+    line-height: 2;
+    padding: 1rem 0;
+  }
+  
+  .footer .boxContainer .box .share {
+    margin-top: 1rem;
+  }
+  
+  .footer .boxContainer .box .share a {
+    height: 4.5rem;
+    width: 4.5rem;
+    line-height: 4.5rem;
+    border-radius: 10%;
+    font-size: 1.7rem;
+    border: 0.1rem solid var(--primary-color);
+    color: var(--primary-color);
+    margin-right: 0.3rem;
+    text-align: center;
+  }
+  
+  .footer .boxContainer .box .share a:hover {
+    background: var(--primary-color);
+    color: var(--white);
+  }
+  
+  .footer .boxContainer .box .link {
+    font-size: 1.7rem;
+    line-height: 2;
+    color: var(--black);
+    padding: 0.5rem 0;
+    display: block;
+  }
+  
+  .footer .boxContainer .box .link:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+  }
+  
+  .footer .credit {
+    font-size: 2rem;
+    margin-top: 3rem;
+    padding-top: 3rem;
+    text-align: center;
+    color: var(--black);
+    border-top: 0.1rem solid var(--primary-color);
+  }
+  
+  .footer .credit span {
+    color: var(--primary-color);
+  }
+  

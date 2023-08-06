@@ -1,0 +1,47 @@
+/* about */
+
+.about .container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .about .container .aboutImage {
+    position: relative;
+    flex: 1 1 40rem;
+  }
+  
+  .about .container .aboutImage img {
+    width: 80%;
+  }
+  
+  .about .container .aboutImage .aboutImg {
+    position: absolute;
+    bottom: -10rem;
+    right: -1rem;
+    width: 25rem;
+    padding-block: 5rem;
+  }
+  
+  .about .container .aboutContent {
+    flex: 1 1 50rem;
+    padding-left: 6rem;
+    padding-top: 8rem;
+  }
+  
+  .about .container .aboutContent h3 {
+    font-size: 3rem;
+    color: var(--primary-color);
+  }
+  
+  .about .container .aboutContent p {
+    font-size: 1.6rem;
+    color: #444;
+    padding: 1rem 0;
+    line-height: 1.8;
+  }
+  
+  @media (max-width: 600px) {
+    .about .container .aboutImage img {
+      width: 90%;
+    }
+  }
