@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './Subjects.module.css';
-import subject from '../images/subject-1.png';
+import subject from '../images/father.png';
 import calendar from '../images/calendar.png'
 import notas from '../images/nota.png';
-import alarme from '../images/subject-4.png';
+import alarme from '../images/bell.png';
 
 const Subjects = () => {
   return (
@@ -12,7 +12,7 @@ const Subjects = () => {
 
       <div className={styles.boxContainer}>
       
-          <a href="/pages/canvas.html">
+          <a href="../pages/canvas.js">
             <div className={styles.box}>
               <img src={subject} alt />
               <h3>mapa mental</h3>
@@ -35,8 +35,8 @@ const Subjects = () => {
           </a>
           <div className={styles.box}>
             <img src={alarme} alt />
-            <h3>engineering</h3>
-            <p>fun &amp; challenging</p>
+            <h3>Alarmes</h3>
+            <p>Mantenha-se em tempo</p>
           </div>
         
       </div>

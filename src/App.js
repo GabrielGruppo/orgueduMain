@@ -7,7 +7,6 @@ import Home from './components/Home';
 import Subjects from './components/Subjects';
 import About from './components/About';
 import Teacher from './components/Teacher';
-import Review from './components/Review';
 import Contact from './components/Contact';
 import Footer from './components/footer';
 
@@ -19,7 +18,6 @@ function App() {
       <Subjects />
       <Teacher />
       <About />
-      <Review />
       <Contact />
       <Footer />
     </div>

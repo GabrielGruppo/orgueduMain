@@ -11,7 +11,7 @@
   }
   
   .about .container .aboutImage img {
-    width: 80%;
+    width: 70%;
   }
   
   .about .container .aboutImage .aboutImg {
@@ -40,8 +40,3 @@
     line-height: 1.8;
   }
   
-  @media (max-width: 600px) {
-    .about .container .aboutImage img {
-      width: 90%;
-    }
-  }
