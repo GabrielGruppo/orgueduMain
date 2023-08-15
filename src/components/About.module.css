@@ -11,6 +11,7 @@
   }
   
   .about .container .aboutImage img {
+    height: auto;
     width: 70%;
   }
   

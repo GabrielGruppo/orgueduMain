@@ -9,18 +9,28 @@ import About from './components/About';
 import Teacher from './components/Teacher';
 import Contact from './components/Contact';
 import Footer from './components/footer';
+import Canvas from './pages/notas';
+import { BrowserRouter, Routes, Route} from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <Home />
-      <Subjects />
-      <Teacher />
-      <About />
-      <Contact />
-      <Footer />
-    </div>
+    <BrowserRouter> 
+      <div className="App">
+        <Header />
+        <Home />
+        <Subjects />
+        <Routes>
+          <Route path='/notas' element={<Canvas />} />
+        </Routes>
+        <Teacher />
+        <About />
+        <Contact />
+        <Footer />
+        
+      </div>
+
+      
+    </BrowserRouter>
   );
 }
 
