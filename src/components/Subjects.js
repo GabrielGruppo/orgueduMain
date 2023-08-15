@@ -12,7 +12,7 @@ const Subjects = () => {
       <h1 className='heading'>nossas ferramentas</h1>
 
       <div className={styles.boxContainer}>     
-          <Link to="/notas">
+          <Link to="/canvas">
             <div className={styles.box}>
               <img src={subject} alt />
               <h3>mapa mental</h3>
@@ -20,20 +20,21 @@ const Subjects = () => {
             </div>
           </Link>
         
-          <a href="/pages/calendar.html">
+          <Link to="/calendar">
             <div className={styles.box}>
               <img src={calendar} alt />
               <h3>calendário</h3>
               <p>não desperdice nenhum dia!</p>
             </div>
-          </a>
-          <a href="../pages/notas.js">
+            </Link>
+            
+          <Link to="/notas">  
             <div className={styles.box}>
               <img src={notas} alt />
               <h3>Notas</h3>
               <p>Organize-se &amp; anote</p>
             </div>
-          </a>
+          </Link>
           <div className={styles.box}>
             <img src={alarme} alt />
             <h3>Alarmes</h3>

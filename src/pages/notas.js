@@ -1,18 +1,11 @@
 import React from 'react';
 import './notas.css';
+import Modal from '../components/modal';
 
-function Notas({ title, content, close}) {
+function Notas() {
   return (
     <div className="Notas">
-      <header className="modal__container">
-      <div className="modal__close" onClick={()=> close()}>&times;</div>
-        <div className="modal__title">
-          {title}
-        </div>
-        <div className="modal__conten">
-          {content}
-        </div>
-      </header>
+      <Modal />
     </div>
   );
 }
