@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'swiper/css';
 import './App.css';
@@ -15,6 +15,7 @@ import Calendar from './pages/calendar';
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
 
 function App() {
+  const [showModal, setShowModal] = useState(false);
   return (
     <BrowserRouter> 
       <div className="App">
