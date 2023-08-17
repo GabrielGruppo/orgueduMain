@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'swiper/css';
 import './App.css';
+import '@excalidraw/excalidraw';
 import Header from './components/Header';
 import Home from './components/Home';
 import Subjects from './components/Subjects';
@@ -15,7 +16,6 @@ import Calendar from './pages/calendar';
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
 
 function App() {
-  const [showModal, setShowModal] = useState(false);
   return (
     <BrowserRouter> 
       <div className="App">
@@ -28,7 +28,6 @@ function App() {
         <Footer />
         
         <Routes>
-          <Route path='/canvas' element={<Canvas />} />
           <Route path='/notas' element={<Notas />} />
           <Route path='/calendar' element={<Calendar />} />
         </Routes>
