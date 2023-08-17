@@ -5,7 +5,7 @@ import subject from '../images/father.png';
 import calendar from '../images/calendar.png'
 import notas from '../images/nota.png';
 import alarme from '../images/bell.png';
-import canvas from '../pages/canvas';
+import Canvas from '../pages/canvas';
 import { Link } from "react-router-dom";
 import { useState } from 'react';
 
@@ -53,7 +53,7 @@ const Subjects = () => {
           {showModal && (
               <Modal 
               title={<span>Desenho</span>}
-              content={<canvas />}
+              content={<Canvas />}
               close={handleCloseModal}
               />)}
 

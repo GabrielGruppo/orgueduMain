@@ -1,16 +1,12 @@
 import React from 'react';
 import '@excalidraw/excalidraw';
-import Excalidraw from '@excalidraw/excalidraw';
-import WelcomeScreen from '@excalidraw/excalidraw';
+import { Excalidraw } from '@excalidraw/excalidraw';
+import styles from './canvas.module.css';
 
 function Canvas() {
   return (
-    <div className="Canvas">
-      <Excalidraw>
-        <WelcomeScreen>
-          
-        </WelcomeScreen>
-      </Excalidraw>
+    <div className={styles.Canvas}>
+      <Excalidraw />
     </div>
   );
 }

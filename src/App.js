@@ -10,7 +10,6 @@ import About from './components/About';
 import Teacher from './components/Teacher';
 import Contact from './components/Contact';
 import Footer from './components/footer';
-import Canvas from './pages/canvas';
 import Notas from './pages/notas';
 import Calendar from './pages/calendar';
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
@@ -26,7 +25,6 @@ function App() {
         <About />
         <Contact />
         <Footer />
-        
         <Routes>
           <Route path='/notas' element={<Notas />} />
           <Route path='/calendar' element={<Calendar />} />

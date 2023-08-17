@@ -13,7 +13,7 @@ function Modal({ title, content, close}) {
         <div className={styles.modal__title}>
           {title}
         </div>
-        <div className={styles.modal__conten}>
+        <div className={styles.modal__content}>
           {content}
         </div>
       </header>
