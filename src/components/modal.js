@@ -5,7 +5,7 @@ function Modal({ title, content, close}) {
   return (
     <div className={styles.Modal}>
       <header className={styles.modal__container}>
-      <div className={styles.modal__close} onClick={()=> close()}>&times;</div>
+      <div className={styles.modal__close} onClick={()=> close(false)}>&times;</div>
         <div className={styles.modal__title}>
           {title}
         </div>

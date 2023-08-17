@@ -10,6 +10,7 @@
     align-items: center;
     justify-content: center;
     padding: 30px;
+    cursor: crosshair;
   }
   
   .modal__container {
@@ -23,16 +24,21 @@
     flex-direction: column;
     justify-content: space-between;
     position: relative;
+    text-align: left;
   }
   
   .modal__title {
     padding: 1rem;
     border-bottom: 1px solid #ccc;
+    text-align: center;
   }
   
   
   .modal__content {
     flex: 1;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
   }
   
   .modal__footer {

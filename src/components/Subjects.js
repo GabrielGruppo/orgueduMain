@@ -14,6 +14,11 @@ const Subjects = () => {
   const [showModal3, setShowModal3] = useState(false);
   const [showModal4, setShowModal4] = useState(false);
 
+  const handleCloseModal = () => {
+    console.log("Closing modal");
+    setShowModal(false);
+  };
+  
   return (
     <section className={styles.subjects} id="ferramentas">
       <h1 className='heading'>nossas ferramentas</h1>
@@ -25,10 +30,16 @@ const Subjects = () => {
               <img src={subject} alt />
               <h3>mapa mental</h3>
               <p>monte sua rotina</p>
-              {showModal && (<Modal title={<span>Desenho</span>}/>)}
+              
             </div>
+            
           </Link>
-        
+          {showModal && (
+              <Modal 
+              title={<span>Desenho</span>}
+              content={<span>Olá, estou testando</span>}
+              close={handleCloseModal}
+              />)}
           <Link to="/calendar"  onClick={() => setShowModal2(true)}>
             <div className={styles.box}>
               <img src={calendar} alt />
