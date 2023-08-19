@@ -1,4 +1,11 @@
 .Canvas {
     z-index: 1001;
     width: 100%;
+    height: 80vh;
+    position: absolute;
 }
+
+
+.Canvas .excalidraw {
+    --color-primary: red;
+  }
