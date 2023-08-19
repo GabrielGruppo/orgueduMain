@@ -137,13 +137,6 @@ section{
 #menuBtn {
   display: none;
 }
-
-.excalidraw {
-    --color-primary: #fcc6d9;
-    --color-primary-darker: #f783ac;
-    --color-primary-darkest: #e64980;
-    --color-primary-light: #f2a9c4;
-}
 @media (max-width:991px){
 
   html{
