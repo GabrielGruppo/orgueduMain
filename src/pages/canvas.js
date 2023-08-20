@@ -7,7 +7,7 @@ import './excalidraw.custom.css'
 function Canvas() {
   return (
     <div className={styles.Canvas}>
-      <Excalidraw gridModeEnabled />
+      <Excalidraw />
     </div>
   );
 }
