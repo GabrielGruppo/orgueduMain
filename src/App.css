@@ -6,6 +6,7 @@
   --black: #141414;
   --white: #fff;
   --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.1);
+  --note-new: #54dac6;
 }
 
 *{
@@ -209,6 +210,9 @@ code {
 		'Courier New', monospace;
 }
 
+
+/*------note------*/
+
 .header {
 	display: flex;
 	align-items: center;
@@ -241,13 +245,13 @@ code {
 }
 
 .note.new {
-	background-color: #67d7cc;
+	background-color: var(--note-new);
 }
 
 textarea {
 	border: none;
 	resize: none;
-	background-color: #67d7cc;
+	background-color: var(--note-new);
 }
 
 textarea:focus {
@@ -267,8 +271,8 @@ textarea:focus {
 }
 
 .note {
-	background-color: #fef68a;
-	border-radius: 10px;
+	background-color: #2ba2a4;
+	border-radius: 5px;
 	padding: 1rem;
 	min-height: 170px;
 	display: flex;
@@ -276,13 +280,14 @@ textarea:focus {
 	justify-content: space-between;
 	white-space: pre-wrap;
   color: var(--secondary);
-}
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;}
 
 .note-footer {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-  color: var(--secondary);
 }
 
 .delete-icon {
@@ -293,7 +298,7 @@ textarea:focus {
 	display: flex;
 	align-items: center;
 	background-color: rgb(233, 233, 233);
-	border-radius: 10px;
+	border-radius: 5px;
 	padding: 5px;
 	margin-bottom: 1.5em;
 }
@@ -312,6 +317,18 @@ textarea:focus {
   max-height: 80vh;
   overflow-x: hidden;
   overflow-y: auto;
+}
+
+.false::-webkit-scrollbar{
+  width: 1rem;
+}
+
+.false::-webkit-scrollbar-track{
+  background: transparent;
+}
+
+.false::-webkit-scrollbar-thumb{
+  background: var(--primary-color);
 }
 
 @media (max-width:991px){
