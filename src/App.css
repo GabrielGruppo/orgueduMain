@@ -76,6 +76,7 @@ section{
   overflow: hidden;
   z-index: 1;
   border-radius: .5rem;
+  cursor: pointer;
 }
 
 .btn::before{
