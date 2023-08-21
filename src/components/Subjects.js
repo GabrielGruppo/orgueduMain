@@ -6,6 +6,8 @@ import calendar from '../images/calendar.png'
 import notas from '../images/nota.png';
 import alarme from '../images/bell.png';
 import Canvas from '../pages/canvas';
+import Alarm from '../pages/alarm';
+import Notes from '../pages/notas'
 import { Link } from "react-router-dom";
 import { useState } from 'react';
 
@@ -52,7 +54,7 @@ const Subjects = () => {
           </Link>
           {showModal && (
               <Modal 
-              title={<span>Desenho</span>}
+              title={<span>Drawing</span>}
               content={<Canvas />}
               close={handleCloseModal}
               />)}
@@ -80,12 +82,12 @@ const Subjects = () => {
             </Link>
             {showModal3 && (
                 <Modal 
-                title={<span>Desenho</span>}
-                content={<span>Olá, estou testando</span>}
+                title={<span>Notes</span>}
+                content={<Notes />}
                 close={handleCloseModal3}
              />)}
 
-            <Link to="/notas" onClick={() => setShowModal4(true)}>
+            <Link to="/alarm" onClick={() => setShowModal4(true)}>
               <div className={styles.box}>
                 <img src={alarme} alt />
                 <h3>Alarmes</h3>
@@ -95,7 +97,7 @@ const Subjects = () => {
             {showModal4 && (
                 <Modal 
                 title={<span>Alarmes</span>}
-                content={<span>Olá, estou testando</span>}
+                content={<Alarm />}
                 close={handleCloseModal4}
                 />)}
       </div>

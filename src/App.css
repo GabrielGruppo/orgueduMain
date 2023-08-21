@@ -137,6 +137,183 @@ section{
 #menuBtn {
   display: none;
 }
+
+.Canvas {
+  z-index: 1000;
+  width: 100%;
+  height: 80vh;
+  position: absolute;
+}
+
+
+.Canvas .excalidraw {
+  --color-primary: #000000;
+  --color-primary-darker: var(--primary-color);
+  --color-primary-darkest: #3b9abf;
+  --color-primary-light: #a9e0f2;
+  --lg-icon-size: 2rem;
+  --color-selection: var(--primary-color);
+  border-radius: 1rem;
+}
+.excalidraw.excalidraw-modal-container {
+  position: fixed !important;
+  z-index: 10002 !important;
+}
+
+:root{
+  --red: #ff0000;
+  --green: var(--primary-color);
+}
+
+main.mainAlarm{
+  padding-top: 10px;
+  max-width: 40vh;
+  margin: 0 auto;
+  text-align: center;
+}
+
+button.btnAlarm{
+  background-color: transparent;
+  color: var(--primary-color);
+  border:0;
+  display: inline-block;
+  width: 100px;
+  cursor: pointer;
+}
+
+button.with-text{
+  cursor: pointer;
+  color: var(--white);
+  width: auto;
+  background-color:var(--primary-color);
+  border-radius:10px;
+  padding: 10px 20px;
+  font-size: 1.4rem;
+  line-height: 36px;
+}
+button.with-text svg{
+  width: 36px;
+  float:left;
+  margin-right: 5px;
+}
+
+label.labelAlarm{
+  display:block;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  text-transform: capitalize;
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas,
+		'Courier New', monospace;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.dark-mode {
+	background-color: black;
+}
+
+.dark-mode h1 {
+	color: white;
+}
+
+.container {
+	max-width: 960px;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 20px;
+  max-height: 80vh;  
+}
+
+.notes-list {
+	display: grid;
+	grid-gap: 1rem;
+	grid-template-columns: repeat(
+		auto-fill,
+		minmax(250px, 1fr)
+	);
+}
+
+.note.new {
+	background-color: #67d7cc;
+}
+
+textarea {
+	border: none;
+	resize: none;
+	background-color: #67d7cc;
+}
+
+textarea:focus {
+	outline: none;
+}
+
+.save {
+	background-color: #e1e1e1;
+	border: none;
+	border-radius: 15px;
+	padding: 5px 10px 5px 10px;
+}
+
+.save:hover {
+	background-color: #ededed;
+	cursor: pointer;
+}
+
+.note {
+	background-color: #fef68a;
+	border-radius: 10px;
+	padding: 1rem;
+	min-height: 170px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	white-space: pre-wrap;
+  color: var(--secondary);
+}
+
+.note-footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+  color: var(--secondary);
+}
+
+.delete-icon {
+	cursor: pointer;
+}
+
+.search {
+	display: flex;
+	align-items: center;
+	background-color: rgb(233, 233, 233);
+	border-radius: 10px;
+	padding: 5px;
+	margin-bottom: 1.5em;
+}
+
+.search input {
+	border: none;
+	background-color: rgb(233, 233, 233);
+	width: 100%;
+}
+
+.search input:focus {
+	outline: none;
+}
+
+.false {
+  max-height: 80vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 @media (max-width:991px){
 
   html{

@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import './notas.css';
-import Modal from '../components/modal';
-
+import Note from './react-notes-app-master/notes'
 function Notas() {
   return (
     <div className="Notas">
+      <Note />
     </div>
   );
 }
