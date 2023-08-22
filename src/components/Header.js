@@ -63,14 +63,11 @@ const Header = () => {
         <a href="#ferramentas" className={styles.hoverUnderline}>
           ferramentas
         </a>
-        <a href="#about" className={styles.hoverUnderline}>
-          sobre
-        </a>
         <a href="#teacher" className={styles.hoverUnderline}>
           equipe
         </a>
-        <a href="#review" className={styles.hoverUnderline}>
-          críticas
+        <a href="#about" className={styles.hoverUnderline}>
+          sobre
         </a>
         <a href="#contact" className={styles.hoverUnderline}>
           contato
@@ -92,9 +89,12 @@ const Header = () => {
           <input type="email" placeholder="enter your email" id="email" className={styles.box} value={email} onChange={(e) => setEmail(e.target.value)} />
           <input type="password" placeholder="enter your password" id="password" className={styles.box} value={password} onChange={(e) => setPassword(e.target.value)} />
           <div className={styles.remember}>
-            <input type="checkbox" name="" id="remember" />
-            <label htmlFor="remember">remember me</label>
+            <input type="checkbox" name="" id="remember" className={styles.remembercheck}/>
+            <label htmlFor="remember">Remember me</label>
           </div>
+          <div className={styles.signup}>
+              <label>Don't have an account?</label>
+            </div>
           <button type="submit" className="btn" id="login-btn">
             <span className="text text1">login now</span>
             <span className="text text2" aria-hidden="true">login now</span>
