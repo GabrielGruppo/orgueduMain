@@ -332,6 +332,42 @@ textarea:focus {
   background: var(--primary-color);
 }
 
+/*CALENDAR*/
+
+.mbsc-eventcalendar {
+  height: 80vh !important;
+}
+
+.mbsc-material.mbsc-popup-button.mbsc-font {
+  color: var(--primary-color) !important;
+}
+
+.mbsc-material.mbsc-segmented-button.mbsc-button.mbsc-selected {
+  background-color: var(--primary-color) !important;
+}
+.mbsc-material.mbsc-selected .mbsc-calendar-cell-text{
+  background: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+.mbsc-material.mbsc-segmented-button.mbsc-button {
+  border-color: var(--primary-color) !important;
+}
+
+.mbsc-material.mbsc-switch-handle.mbsc-checked{
+  background: var(--primary-color) !important;
+}
+.mbsc-material.mbsc-switch-track.mbsc-checked {
+  background-color: #12c2b95c !important;
+}
+
+.mbsc-material.mbsc-calendar-today, .mbsc-material.mbsc-calendar-week-nr{
+  color: var(--primary-color) !important;
+}
+
+.mbsc-material.mbsc-calendar-label {
+  color: #2ac9db !important;
+}
 @media (max-width:991px){
 
   html{

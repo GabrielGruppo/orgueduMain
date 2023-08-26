@@ -7,7 +7,8 @@ import notas from '../images/nota.png';
 import alarme from '../images/bell.png';
 import Canvas from '../pages/canvas';
 import Alarm from '../pages/alarm';
-import Notes from '../pages/notas'
+import Notes from '../pages/notas';
+import Calendar from '../pages/calendar';
 import { Link } from "react-router-dom";
 import { useState } from 'react';
 
@@ -69,7 +70,7 @@ const Subjects = () => {
             {showModal2 && (
               <Modal 
               title={<span>Desenho</span>}
-              content={<span>Olá, estou testando</span>}
+              content={<Calendar />}
               close={handleCloseModal2}
               />)}
             
