@@ -1,0 +1,14 @@
+.Canvas {
+    z-index: 1001;
+    width: 100%;
+    height: 80vh;
+    position: absolute;
+}
+
+
+.excalidraw {
+    --color-primary: #fcc6d9;
+    --color-primary-darker: #f783ac;
+    --color-primary-darkest: #e64980;
+    --color-primary-light: #f2a9c4;
+  }
