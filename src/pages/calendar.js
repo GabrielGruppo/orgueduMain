@@ -3,7 +3,9 @@ import { Scheduler } from "@aldabil/react-scheduler";
 
 const Calendar = () => {
   return (
-    <Scheduler />
+    <div className="scheduler">
+        <Scheduler />
+    </div>
   );
 };
 

@@ -8,8 +8,6 @@ import alarme from '../images/bell.png';
 import Canvas from '../pages/canvas';
 import Alarm from '../pages/alarm';
 import Notes from '../pages/notas';
-import KanBan from "../pages/kanban/App";
-import ToDo from '../pages/todo/App';
 import Calendar from '../pages/calendar';
 import { Link } from "react-router-dom";
 import { useState } from 'react';
@@ -129,7 +127,6 @@ const Subjects = () => {
             {showModal5 && (
                 <Modal 
                 title={<span>Alarmes</span>}
-                content={<KanBan />}
                 close={handleCloseModal5}
                 />)}
           <QueryClientProvider client={queryClient}>
@@ -143,7 +140,6 @@ const Subjects = () => {
             {showModal6 && (
                 <Modal 
                 title={<span>To-Do</span>}
-                content={<ToDo />}
                 close={handleCloseModal6}
                 />)}
           </QueryClientProvider>
