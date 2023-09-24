@@ -148,6 +148,7 @@ section{
 }
 
 
+
 .Canvas .excalidraw {
   --color-primary: #000000;
   --color-primary-darker: var(--primary-color);

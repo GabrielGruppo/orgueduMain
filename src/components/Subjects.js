@@ -8,15 +8,22 @@ import alarme from '../images/bell.png';
 import Canvas from '../pages/canvas';
 import Alarm from '../pages/alarm';
 import Notes from '../pages/notas';
+import KanBan from "../pages/kanban/App";
+import ToDo from '../pages/todo/App';
 import Calendar from '../pages/calendar';
 import { Link } from "react-router-dom";
 import { useState } from 'react';
+import { QueryClient, QueryClientProvider} from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 const Subjects = () => {
   const [showModal, setShowModal] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
   const [showModal3, setShowModal3] = useState(false);
   const [showModal4, setShowModal4] = useState(false);
+  const [showModal5, setShowModal5] = useState(false);
+  const [showModal6, setShowModal6] = useState(false);
 
   const handleCloseModal = () => {
     console.log("Closing modal");
@@ -36,6 +43,16 @@ const Subjects = () => {
   const handleCloseModal4 = () => {
     console.log("Closing modal");
     setShowModal4(false);
+  };
+
+  const handleCloseModal5 = () => {
+    console.log("Closing modal");
+    setShowModal5(false);
+  };
+
+  const handleCloseModal6 = () => {
+    console.log("Closing modal");
+    setShowModal6(false);
   };
 
   
@@ -69,7 +86,7 @@ const Subjects = () => {
             </Link>
             {showModal2 && (
               <Modal 
-              title={<span>Desenho</span>}
+              title={<span>Calendário</span>}
               content={<Calendar />}
               close={handleCloseModal2}
               />)}
@@ -101,6 +118,35 @@ const Subjects = () => {
                 content={<Alarm />}
                 close={handleCloseModal4}
                 />)}
+        
+            <Link to="/alarm" onClick={() => setShowModal5(true)}>
+              <div className={styles.box}>
+                <img src={alarme} alt />
+                <h3>Kanban</h3>
+                <p>Mantenha-se em tempo</p>
+              </div>
+            </Link>
+            {showModal5 && (
+                <Modal 
+                title={<span>Alarmes</span>}
+                content={<KanBan />}
+                close={handleCloseModal5}
+                />)}
+          <QueryClientProvider client={queryClient}>
+            <Link to="/todo" onClick={() => setShowModal6(true)}>
+              <div className={styles.box}>
+                <img src={alarme} alt />
+                <h3>To-Do</h3>
+                <p>Explore the To-Do list</p>
+              </div>
+            </Link>
+            {showModal6 && (
+                <Modal 
+                title={<span>To-Do</span>}
+                content={<ToDo />}
+                close={handleCloseModal6}
+                />)}
+          </QueryClientProvider>
       </div>
     </section>
   );

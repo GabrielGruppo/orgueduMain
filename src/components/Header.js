@@ -58,19 +58,19 @@ const Header = () => {
 
       <nav className={`${styles.navbar} ${isMenuOpen ? styles.active : ''}`}>
         <a href="#home" className={styles.hoverUnderline}>
-          home
+          Home
         </a>
         <a href="#ferramentas" className={styles.hoverUnderline}>
-          ferramentas
+          Ferramentas
         </a>
         <a href="#teacher" className={styles.hoverUnderline}>
-          equipe
+          Razão
         </a>
         <a href="#about" className={styles.hoverUnderline}>
-          sobre
+          Sobre
         </a>
         <a href="#contact" className={styles.hoverUnderline}>
-          contato
+          Contato
         </a>
       </nav>
 
