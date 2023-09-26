@@ -7,7 +7,7 @@ const Home = () => {
       <div className={styles.content}>
         <h3>melhore sua organização</h3>
         <p>ConcentraMind: Sua dose diária de foco e organização! 💡📚 Desperte o poder da concentração e conquiste a produtividade com nossa ajuda 🚀</p>
-        <a href="#" className='btn'>
+        <a href="#about" className='btn'>
           <span className="text text1">Veja mais</span>
           <span className="text text2" aria-hidden="true">
             veja mais

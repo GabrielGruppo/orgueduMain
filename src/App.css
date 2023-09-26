@@ -337,6 +337,8 @@ textarea:focus {
 
 .scheduler{
   height: 80vh;
+  border-radius: 5px;
+  overflow-x: auto;
 }
 @media (max-width:991px){
 

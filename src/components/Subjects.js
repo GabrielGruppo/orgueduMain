@@ -117,32 +117,6 @@ const Subjects = () => {
                 close={handleCloseModal4}
                 />)}
         
-            <Link to="/alarm" onClick={() => setShowModal5(true)}>
-              <div className={styles.box}>
-                <img src={alarme} alt />
-                <h3>Kanban</h3>
-                <p>Mantenha-se em tempo</p>
-              </div>
-            </Link>
-            {showModal5 && (
-                <Modal 
-                title={<span>Alarmes</span>}
-                close={handleCloseModal5}
-                />)}
-          <QueryClientProvider client={queryClient}>
-            <Link to="/todo" onClick={() => setShowModal6(true)}>
-              <div className={styles.box}>
-                <img src={alarme} alt />
-                <h3>To-Do</h3>
-                <p>Explore the To-Do list</p>
-              </div>
-            </Link>
-            {showModal6 && (
-                <Modal 
-                title={<span>To-Do</span>}
-                close={handleCloseModal6}
-                />)}
-          </QueryClientProvider>
       </div>
     </section>
   );
