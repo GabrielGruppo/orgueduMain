@@ -6,6 +6,8 @@ const Header = () => {
   const [isLoginFormOpen, setLoginFormOpen] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+
 
   const handleMenuClick = () => {
     setMenuOpen(!isMenuOpen);
@@ -17,21 +19,41 @@ const Header = () => {
     setMenuOpen(false);
   };
 
+  //formulario submissao --------------------------------------------------------------------------------------------------------
+
+  const [msg, setMsg] = useState("");
+  const [error, setError] = useState("");
+
+
   const handleLoginSubmit = (event) => {
     event.preventDefault();
 
     const data = { email, password };
 
-    fetch('http://localhost', {
+    fetch('http://localhost/orgueduMain/login.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        alert(data.message);
+    .then((response) => response.json())
+    .then((response) => {
+      console.log(response);
+      if(response[0].result === "Invalid username!" || response[0].result === "Invalid password!"){
+        setError(response[0].result);
+        alert(error);
+    }
+    else{
+        setMsg(response[0].result);
+        setTimeout(function(){
+            localStorage.setItem("login", true);
+            localStorage.setItem("name", response[0].name);
+            var name = localStorage.getItem('name');
+            setName(name);
+            alert("Bem vindo " + name);
+        }, 5);
+    }
       })
       .catch((error) => {
         alert(error.message);
