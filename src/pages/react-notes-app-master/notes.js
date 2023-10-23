@@ -32,11 +32,28 @@ const App = () => {
 		const newNote = {
 			id: nanoid(),
 			text: text,
+			id_user: localStorage.getItem("id_user"),
 			date: date.toLocaleDateString(),
 		};
+
 		const newNotes = [...notes, newNote];
 		setNotes(newNotes);
+		
+		 fetch('http://localhost:84/orgueduMain/nota_repositorio.php', {
+			method: 'POST',
+			headers: {
+			  'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(newNote),
+		  })
+		  .then((response) => response.json())
+		  .then((response) => {
+			console.log(response);
+		  })
+
 	};
+
+	
 
 	const deleteNote = (id) => {
 		const newNotes = notes.filter((note) => note.id !== id);

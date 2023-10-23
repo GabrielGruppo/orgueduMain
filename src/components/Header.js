@@ -7,6 +7,7 @@ const Header = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const [id_user, setId] = useState('');
 
 
   const handleMenuClick = () => {
@@ -30,7 +31,7 @@ const Header = () => {
 
     const data = { email, password };
 
-    fetch('http://localhost/orgueduMain/login.php', {
+    fetch('http://localhost:84/orgueduMain/login.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -49,7 +50,10 @@ const Header = () => {
         setTimeout(function(){
             localStorage.setItem("login", true);
             localStorage.setItem("name", response[0].name);
+            localStorage.setItem("id_user", response[0].id)
             var name = localStorage.getItem('name');
+            var id_user = localStorage.getItem('id_user');
+            setId(id_user);
             setName(name);
             alert("Bem vindo " + name);
         }, 5);
