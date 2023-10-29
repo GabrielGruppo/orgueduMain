@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './Header.module.css';
 
 const Header = () => {
-  const [isMenuOpen, setMenuOpen] = useState(false);
+  const [isMenuOpen, setMenuOpen] = useState(false); 
   const [isLoginFormOpen, setLoginFormOpen] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -10,14 +10,14 @@ const Header = () => {
   const [id_user, setId] = useState('');
 
 
-  const handleMenuClick = () => {
+ const handleMenuClick = () => {
     setMenuOpen(!isMenuOpen);
     setLoginFormOpen(false);
   };
 
   const handleLoginClick = () => {
     setLoginFormOpen(!isLoginFormOpen);
-    setMenuOpen(false);
+    {/* setMenuOpen(false);*/}
   };
 
   //formulario submissao --------------------------------------------------------------------------------------------------------
@@ -106,8 +106,8 @@ const Header = () => {
           className={`fas fa-user`}
           onClick={handleLoginClick}
         ></div>
-        <div id="menuBtn" className={`fas fa-bars ${isMenuOpen ? styles.active : ''}`} onClick={handleMenuClick}></div>
-      </div>
+       <div id="menuBtn" className={`fas fa-bars ${isMenuOpen ? styles.active : ''}`} onClick={handleMenuClick}></div>
+      </div> 
 
       
         <form id='loginForm' className={`${styles.loginForm} ${isLoginFormOpen ? styles.active : ''}`} onSubmit={handleLoginSubmit}>
