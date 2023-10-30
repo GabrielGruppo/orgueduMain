@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Header.module.css';
+import Modal from './modal';
+import { Link } from "react-router-dom";
+import Register from './reg';
 
 const Header = () => {
   const [isMenuOpen, setMenuOpen] = useState(false); 
@@ -8,7 +11,12 @@ const Header = () => {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [id_user, setId] = useState('');
+  const [showModal, setShowModal] = useState(false);
 
+  const handleCloseModal = () => {
+    console.log("Closing modal");
+    setShowModal(false);
+  };
 
  const handleMenuClick = () => {
     setMenuOpen(!isMenuOpen);
@@ -118,9 +126,18 @@ const Header = () => {
             <input type="checkbox" name="" id="remember" className={styles.remembercheck}/>
             <label htmlFor="remember">Remember me</label>
           </div>
-          <div className={styles.signup}>
-              <label>Don't have an account?</label>
-            </div>
+           <Link to="/" onClick={() => setShowModal(true)}>
+              <div className={styles.signup}>
+                <label>Don't have an account?</label>
+              </div>
+            </Link>
+          {showModal && (
+              <Modal 
+              title={<span>Log-in</span>}
+              
+              close={handleCloseModal}
+              />)}
+
           <button type="submit" className="btn" id="login-btn">
             <span className="text text1">login now</span>
             <span className="text text2" aria-hidden="true">login now</span>
