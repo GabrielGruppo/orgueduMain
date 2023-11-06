@@ -8,8 +8,8 @@ export default function Calendar() {
       {
         event_id: 10,
         title: "Event 1",
-        start: new Date(new Date(new Date().setHours(10)).setMinutes(0)),
-        end: new Date(new Date(new Date().setHours(11)).setMinutes(0))
+        start: new Date("2023/11/6 09:30"),
+        end: new Date("2023/11/6 10:30")
       }
     ];
 

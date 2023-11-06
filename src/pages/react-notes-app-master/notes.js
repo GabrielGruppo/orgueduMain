@@ -12,9 +12,8 @@ const App = () => {
 
 	useEffect(() => {
 
-		const acao = {acao:'busca',id_user: localStorage.getItem("id_user")};
+		const acao = {acao:'busca',user_id: localStorage.getItem("user_id")};
 
-		if(localStorage.getItem('login')){ 
 			fetch('http://localhost:84/orgueduMain/nota_repositorio.php', {
 				method: 'POST',
 				headers: {
@@ -28,7 +27,10 @@ const App = () => {
 				if(savedNotes){
 					setNotes(savedNotes)};
 			})
-		}
+			.catch(
+				console.log('usuario nao logado')
+			);
+			
 	}, []);
 
 
@@ -40,17 +42,15 @@ const App = () => {
 	}, [notes]);
 
 	const addNote = (text) => {
-		const date = new Date();
 		const newNote = {
 			text: text,
-			id_user: localStorage.getItem("user_id"),
+			user_id: localStorage.getItem("user_id"),
 			acao: 'insert'
 		};
 
 		const newNotes = [...notes, newNote];
 		setNotes(newNotes);
 		
-		if(localStorage.getItem('login')){ 
 		fetch('http://localhost:84/orgueduMain/nota_repositorio.php', {
 			method: 'POST',
 			headers: {
@@ -58,7 +58,11 @@ const App = () => {
 			},
 			body: JSON.stringify(newNote),
 		  })
-	};
+		  .catch(function (error) {
+			console.log(
+			  "Erro: " + error.message,
+			);
+		  });
 
 }
 
@@ -68,7 +72,6 @@ const App = () => {
 		
 		const acao = {acao:'delete',id:id};
 
-		if(localStorage.getItem('login')){ 
 		fetch('http://localhost:84/orgueduMain/nota_repositorio.php', {
 			method: 'POST',
 			headers: {
@@ -76,7 +79,8 @@ const App = () => {
 			},
 			body: JSON.stringify(acao),
 		  })
-		};
+		  
+
 
 		const newNotes = notes.filter((note) => note.id !== id);
 		setNotes(newNotes);
