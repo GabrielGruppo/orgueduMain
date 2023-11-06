@@ -48,7 +48,8 @@ const App = () => {
 		const newNotes = [...notes, newNote];
 		setNotes(newNotes);
 		
-		 fetch('http://localhost:84/orgueduMain/nota_repositorio.php', {
+		if(localStorage.getItem('login')){ 
+		fetch('http://localhost:84/orgueduMain/nota_repositorio.php', {
 			method: 'POST',
 			headers: {
 			  'Content-Type': 'application/json',
@@ -56,6 +57,8 @@ const App = () => {
 			body: JSON.stringify(newNote),
 		  })
 	};
+
+}
 
 	
 
