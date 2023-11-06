@@ -1,37 +1,71 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Header.module.css';
+import Modal from './modal';
+import { Link } from "react-router-dom";
+import Register from './reg';
 
 const Header = () => {
-  const [isMenuOpen, setMenuOpen] = useState(false);
+  const [isMenuOpen, setMenuOpen] = useState(false); 
   const [isLoginFormOpen, setLoginFormOpen] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [user_id, setId] = useState('');
+  const [showModal, setShowModal] = useState(false);
 
-  const handleMenuClick = () => {
+  const handleCloseModal = () => {
+    console.log("Closing modal");
+    setShowModal(false);
+  };
+
+ const handleMenuClick = () => {
     setMenuOpen(!isMenuOpen);
     setLoginFormOpen(false);
   };
 
   const handleLoginClick = () => {
     setLoginFormOpen(!isLoginFormOpen);
-    setMenuOpen(false);
+    {/* setMenuOpen(false);*/}
   };
+
+  //formulario submissao --------------------------------------------------------------------------------------------------------
+
+  const [msg, setMsg] = useState("");
+  const [error, setError] = useState("");
+
 
   const handleLoginSubmit = (event) => {
     event.preventDefault();
 
     const data = { email, password };
 
-    fetch('http://localhost', {
+    fetch('http://localhost:84/orgueduMain/login.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        alert(data.message);
+    .then((response) => response.json())
+    .then((response) => {
+      console.log(response);
+      if(response[0].result === "Invalid username!" || response[0].result === "Invalid password!"){
+        setError(response[0].result);
+        alert(error);
+    }
+    else{
+        setMsg(response[0].result);
+        setTimeout(function(){
+            localStorage.setItem("login", true);
+            localStorage.setItem("name", response[0].name);
+            localStorage.setItem("user_id", response[0].id)
+            var name = localStorage.getItem('name');
+            var user_id = localStorage.getItem('user_id');
+            setId(user_id);
+            setName(name);
+            alert("Bem vindo " + name);
+        }, 5);
+    }
       })
       .catch((error) => {
         alert(error.message);
@@ -80,8 +114,8 @@ const Header = () => {
           className={`fas fa-user`}
           onClick={handleLoginClick}
         ></div>
-        <div id="menuBtn" className={`fas fa-bars ${isMenuOpen ? styles.active : ''}`} onClick={handleMenuClick}></div>
-      </div>
+       <div id="menuBtn" className={`fas fa-bars ${isMenuOpen ? styles.active : ''}`} onClick={handleMenuClick}></div>
+      </div> 
 
       
         <form id='loginForm' className={`${styles.loginForm} ${isLoginFormOpen ? styles.active : ''}`} onSubmit={handleLoginSubmit}>
@@ -92,9 +126,18 @@ const Header = () => {
             <input type="checkbox" name="" id="remember" className={styles.remembercheck}/>
             <label htmlFor="remember">Remember me</label>
           </div>
-          <div className={styles.signup}>
-              <label>Don't have an account?</label>
-            </div>
+           <Link to="/" onClick={() => setShowModal(true)}>
+              <div className={styles.signup}>
+                <label>Don't have an account?</label>
+              </div>
+            </Link>
+          {showModal && (
+              <Modal 
+              title={<span>Log-in</span>}
+              
+              close={handleCloseModal}
+              />)}
+
           <button type="submit" className="btn" id="login-btn">
             <span className="text text1">login now</span>
             <span className="text text2" aria-hidden="true">login now</span>

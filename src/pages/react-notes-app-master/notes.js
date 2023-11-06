@@ -11,13 +11,23 @@ const App = () => {
 	const [darkMode, setDarkMode] = useState(false);
 
 	useEffect(() => {
-		const savedNotes = JSON.parse(
-			localStorage.getItem('react-notes-app-data')
-		);
 
-		if (savedNotes) {
-			setNotes(savedNotes);
-		}
+		const acao = {acao:'busca',id_user: localStorage.getItem("id_user")};
+		
+		fetch('http://localhost:84/orgueduMain/nota_repositorio.php', {
+			method: 'POST',
+			headers: {
+			  'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(acao),
+		  })
+		  .then((response) => response.json())
+		  .then((response) => {
+			const savedNotes =  response;
+  			if(savedNotes){
+				setNotes(savedNotes)};
+		  })
+
 	}, []);
 
 	useEffect(() => {
@@ -30,15 +40,37 @@ const App = () => {
 	const addNote = (text) => {
 		const date = new Date();
 		const newNote = {
-			id: nanoid(),
 			text: text,
-			date: date.toLocaleDateString(),
+			id_user: localStorage.getItem("user_id"),
+			acao: 'insert'
 		};
+
 		const newNotes = [...notes, newNote];
 		setNotes(newNotes);
+		
+		 fetch('http://localhost:84/orgueduMain/nota_repositorio.php', {
+			method: 'POST',
+			headers: {
+			  'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(newNote),
+		  })
 	};
 
+	
+
 	const deleteNote = (id) => {
+		
+		const acao = {acao:'delete',id:id};
+		
+		fetch('http://localhost:84/orgueduMain/nota_repositorio.php', {
+			method: 'POST',
+			headers: {
+			  'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(acao),
+		  })
+
 		const newNotes = notes.filter((note) => note.id !== id);
 		setNotes(newNotes);
 	};
