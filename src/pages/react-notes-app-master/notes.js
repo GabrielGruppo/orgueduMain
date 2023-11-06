@@ -12,6 +12,7 @@ const App = () => {
 
 	useEffect(() => {
 
+		if(localStorage.getItem('login') == 'true'){
 		const acao = {acao:'busca',id_user: localStorage.getItem("id_user")};
 		
 		fetch('http://localhost:84/orgueduMain/nota_repositorio.php', {
@@ -27,6 +28,7 @@ const App = () => {
   			if(savedNotes){
 				setNotes(savedNotes)};
 		  })
+		}
 
 	}, []);
 
