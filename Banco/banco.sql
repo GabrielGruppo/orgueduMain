@@ -24,3 +24,18 @@ CREATE TABLE note(
     KEY fk_note_user_id (user_id),
     CONSTRAINT fk_note_user FOREIGN KEY (user_id) REFERENCES user (id)
 );
+
+
+CREATE TABLE schedulerevent(
+    id int NOT NULL AUTO_INCREMENT,
+    title varchar(200),
+    event_start varchar(200),
+    event_end varchar(200),
+    user_id int NOT NULL,
+    KEY fk_event_user_id (user_id),
+    CONSTRAINT fk_event_user FOREIGN KEY (user_id) REFERENCES user (id),
+    PRIMARY KEY(id)
+);
+
+
+INSERT INTO `user` (`id`, `name`, `email`, `password`, `creation_date`, `ativo`, `adm`) VALUES (NULL, 'Higor', 'h@gmail.com', '123', current_timestamp(), '0', '0');

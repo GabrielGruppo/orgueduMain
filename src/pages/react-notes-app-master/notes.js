@@ -41,7 +41,7 @@ const App = () => {
 		const date = new Date();
 		const newNote = {
 			text: text,
-			id_user: localStorage.getItem("id_user"),
+			id_user: localStorage.getItem("user_id"),
 			acao: 'insert'
 		};
 

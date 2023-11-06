@@ -10,7 +10,7 @@ const Header = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
-  const [id_user, setId] = useState('');
+  const [user_id, setId] = useState('');
   const [showModal, setShowModal] = useState(false);
 
   const handleCloseModal = () => {
@@ -58,10 +58,10 @@ const Header = () => {
         setTimeout(function(){
             localStorage.setItem("login", true);
             localStorage.setItem("name", response[0].name);
-            localStorage.setItem("id_user", response[0].id)
+            localStorage.setItem("user_id", response[0].id)
             var name = localStorage.getItem('name');
-            var id_user = localStorage.getItem('id_user');
-            setId(id_user);
+            var user_id = localStorage.getItem('user_id');
+            setId(user_id);
             setName(name);
             alert("Bem vindo " + name);
         }, 5);
