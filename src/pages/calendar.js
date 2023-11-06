@@ -10,10 +10,17 @@ export default function Calendar() {
         title: "Event 1",
         start: new Date(new Date(new Date().setHours(10)).setMinutes(0)),
         end: new Date(new Date(new Date().setHours(11)).setMinutes(0))
+      },
+      {
+        start: new Date("2023-11-08T14:00:00.000Z"),
+        end: new Date("2023-11-08T15:00:00.000Z"),
+        id:1,
+        title:"Evento"
       }
     ];
 
     useEffect(() => {
+      if(localStorage.getItem('login') === 'true'){
       const data = {action:'busca',user_id: localStorage.getItem("user_id")};
 
       fetch('http://localhost:84/orgueduMain/event_repositorio.php', {
@@ -28,6 +35,8 @@ export default function Calendar() {
           EVENTS.push(...response);
           console.log(EVENTS);
         })
+
+     }
 
 	}, []);
 

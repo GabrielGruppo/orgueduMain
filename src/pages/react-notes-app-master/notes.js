@@ -12,8 +12,8 @@ const App = () => {
 
 	useEffect(() => {
 
-		if(localStorage.getItem('login') == 'true'){
-		const acao = {acao:'busca',id_user: localStorage.getItem("id_user")};
+		if(localStorage.getItem('login') === 'true'){
+		const acao = {acao:'busca',user_id: localStorage.getItem("user_id")};
 		
 		fetch('http://localhost:84/orgueduMain/nota_repositorio.php', {
 			method: 'POST',
@@ -43,7 +43,7 @@ const App = () => {
 		const date = new Date();
 		const newNote = {
 			text: text,
-			id_user: localStorage.getItem("user_id"),
+			user_id: localStorage.getItem("user_id"),
 			acao: 'insert'
 		};
 
