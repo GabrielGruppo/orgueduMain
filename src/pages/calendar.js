@@ -25,9 +25,9 @@ export default function ReactBigCalendar() {
 			})
 			.then((response) => response.json())
 			.then((response) => {
-				for(let i=0;i<response.lenght;i++){
-          console.log(response[i]);
-        }
+				/**for(let i=0;i<response.lenght;i++){*/
+          console.log(response/**[i]*/);
+       // }
 			})
 			.catch(
 				console.log()
