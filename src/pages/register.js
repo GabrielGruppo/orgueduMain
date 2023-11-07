@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Modal from '../components/modal';
 import { Outlet, Link } from "react-router-dom";
-import styles from './register.css';
+import styles from '../components/Header.module.css';
 
 
 const Register = () => {
@@ -93,9 +93,9 @@ const Register = () => {
           title={<span>Log-in</span>}
           close={handleCloseModal}
         />)}
+      
 
-
-      <button type="submit" className="btn" id="login-btn">
+      <button type="submit" class="btn" id="login-btn">
         <span className="text text1">login now</span>
         <span className="text text2" aria-hidden="true">login now</span>
       </button>
