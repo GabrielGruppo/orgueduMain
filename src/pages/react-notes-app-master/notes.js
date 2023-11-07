@@ -25,7 +25,7 @@ const App = () => {
 					setNotes(savedNotes)};
 			})
 			.catch(
-				console.log('usuario nao logado')
+				console.log()
 			);
 
 	}, []);
