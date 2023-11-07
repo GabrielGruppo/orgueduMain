@@ -13,6 +13,7 @@ import Footer from './components/footer';
 import Notas from './pages/notas';
 import Calendar from './pages/calendar';
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
+import Register from './components/reg';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Routes>
           <Route path='/notas' element={<Notas />} />
           <Route path='/calendar' element={<Calendar />} />
+          <Route path='/res' element={<Register />} />
         </Routes>
 
       </div>

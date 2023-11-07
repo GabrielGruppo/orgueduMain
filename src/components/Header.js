@@ -126,7 +126,7 @@ const Header = () => {
             <input type="checkbox" name="" id="remember" className={styles.remembercheck}/>
             <label htmlFor="remember">Remember me</label>
           </div>
-           <Link to="/" onClick={() => setShowModal(true)}>
+           <Link to="/reg" onClick={() => setShowModal(true)}>
               <div className={styles.signup}>
                 <label>Don't have an account?</label>
               </div>
