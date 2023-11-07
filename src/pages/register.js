@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Modal from './modal';
-import { Link } from "react-router-dom";
-import styles from './Header.module.css';
+import Modal from '../components/modal';
+import { Outlet, Link } from "react-router-dom";
+import styles from '../components/Header.module.css';
+
 
 const Register = () => {
   const [email, setEmail] = useState('');
