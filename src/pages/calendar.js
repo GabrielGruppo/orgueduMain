@@ -1,94 +1,42 @@
-import { Scheduler } from "@aldabil/react-scheduler";
-import { useState, useEffect } from 'react';
+import React, { useState } from "react";
+import { Calendar, momentLocalizer } from "react-big-calendar";
+import moment from "moment";
+import events from "./events";
+import "react-big-calendar/lib/css/react-big-calendar.css";
 
+moment.locale("en-GB");
+const localizer = momentLocalizer(moment);
 
-export default function Calendar() {
-   
-    const EVENTS = [
-      {
-        event_id: 10,
-        title: "Event 1",
-        start: new Date("2023/11/6 09:30"),
-        end: new Date("2023/11/6 10:30")
-      }
-    ];
+export default function ReactBigCalendar() {
+  const [eventsData, setEventsData] = useState(events);
 
-    useEffect(() => {
-      const data = {action:'busca',user_id: localStorage.getItem("user_id")};
-
-      fetch('http://localhost:84/orgueduMain/event_repositorio.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-        })
-        .then((response) => response.json())
-        .then((response) => {
-          EVENTS.push(...response);
-          console.log(EVENTS);
-        })
-
-	}, []);
-
-  const handleConfirm = async (event, action) => {
-    /**
-     * My end-point does not return anything
-     * also does not have event_id
-     * so deal with it with local saved
-     */
-    let returnedEvent;
-
-    if (action === "edit") {
-      returnedEvent = event;
-      /** await editEventOnServer() */
-    } else if (action === "create") {
-
-      const data = {
-        title: event.title,
-        event_start: event.start,
-        event_end: event.end,
-        action: action,
-        user_id: localStorage.getItem('user_id')
-      };
-
-      fetch('http://localhost:84/orgueduMain/event_repositorio.php', {
-			method: 'POST',
-			headers: {
-			  'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(data),
-		  })
-      
-
-
-      returnedEvent = {
-        ...event,
-        event_id: Math.random()
-      };
-      /** await addEventOnServer() */
-    }
-
-    return returnedEvent;
+  const handleSelect = ({ start, end }) => {
+    console.log(start);
+    console.log(end);
+    const title = window.prompt("New Event name");
+    if (title)
+      setEventsData([
+        ...eventsData,
+        {
+          start,
+          end,
+          title
+        }
+      ]);
   };
-
-  const handleDelete = async (deletedId) => {
-    console.log(deletedId);
-    /** await deleteEventOnServer() */
-
-    /**
-     * Just return the deleted id
-     * as long as you sure the end-point request was success
-     */
-    return deletedId;
-  };
-
   return (
-    <Scheduler
-      onConfirm={handleConfirm}
-      onDelete={handleDelete}
-
-      events={EVENTS}
-    />
+    <div className="App">
+      <Calendar
+        views={["day", "agenda", "work_week", "month"]}
+        selectable
+        localizer={localizer}
+        defaultDate={new Date()}
+        defaultView="month"
+        events={eventsData}
+        style={{ height: "75vh" }}
+        onSelectEvent={(event) => alert(event.title)}
+        onSelectSlot={handleSelect}
+      />
+    </div>
   );
 }
