@@ -12,8 +12,7 @@ const App = () => {
 
 	useEffect(() => {
 
-		if(localStorage.getItem('login') === 'true'){
-		const acao = {acao:'busca',user_id: localStorage.getItem("user_id")};
+		const acao = {acao:'busca',id_user: localStorage.getItem("id_user")};
 		
 		fetch('http://localhost:84/orgueduMain/nota_repositorio.php', {
 			method: 'POST',
@@ -28,9 +27,9 @@ const App = () => {
   			if(savedNotes){
 				setNotes(savedNotes)};
 		  })
-		}
 
 	}, []);
+
 
 	useEffect(() => {
 		localStorage.setItem(
@@ -67,7 +66,8 @@ const App = () => {
 	const deleteNote = (id) => {
 		
 		const acao = {acao:'delete',id:id};
-		
+
+		if(localStorage.getItem('login')){ 
 		fetch('http://localhost:84/orgueduMain/nota_repositorio.php', {
 			method: 'POST',
 			headers: {
@@ -75,6 +75,7 @@ const App = () => {
 			},
 			body: JSON.stringify(acao),
 		  })
+		};
 
 		const newNotes = notes.filter((note) => note.id !== id);
 		setNotes(newNotes);
