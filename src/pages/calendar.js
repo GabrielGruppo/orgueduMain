@@ -4,7 +4,7 @@ import moment from "moment";
 import events from "./events";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
-moment.locale("en-GB");
+moment.locale("pt-BR");
 const localizer = momentLocalizer(moment);
 
 export default function ReactBigCalendar() {
@@ -23,15 +23,32 @@ export default function ReactBigCalendar() {
           title
         }
       ]);
+
+      const datafetch = {
+        acao: 'insert',
+        title,
+        start,
+        end,
+        user_id: localStorage.getItem('user_id')
+      };
+      
+      fetch('http://localhost:84/orgueduMain/event_repositorio.php', {
+				method: 'POST',
+				headers: {
+				'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(datafetch),
+			})
+
   };
   return (
     <div className="App">
       <Calendar
-        views={["day", "agenda", "work_week", "month"]}
+        views={["day", "work_week"]}
         selectable
         localizer={localizer}
         defaultDate={new Date()}
-        defaultView="month"
+        defaultView="day"
         events={eventsData}
         style={{ height: "75vh" }}
         onSelectEvent={(event) => alert(event.title)}
