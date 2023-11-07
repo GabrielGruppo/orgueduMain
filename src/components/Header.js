@@ -4,6 +4,7 @@ import Modal from './modal';
 import { Link } from "react-router-dom";
 import Register from './reg';
 
+
 const Header = () => {
   const [isMenuOpen, setMenuOpen] = useState(false); 
   const [isLoginFormOpen, setLoginFormOpen] = useState(false);
@@ -126,7 +127,7 @@ const Header = () => {
             <input type="checkbox" name="" id="remember" className={styles.remembercheck}/>
             <label htmlFor="remember">Remember me</label>
           </div>
-           <Link to="/reg" onClick={() => setShowModal(true)}>
+          <Link to="/reg" onClick={() => setShowModal(true)}>
               <div className={styles.signup}>
                 <label>Don't have an account?</label>
               </div>

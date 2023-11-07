@@ -29,7 +29,7 @@ function App() {
         <Routes>
           <Route path='/notas' element={<Notas />} />
           <Route path='/calendar' element={<Calendar />} />
-          <Route path='/res' element={<Register />} />
+         
         </Routes>
 
       </div>
