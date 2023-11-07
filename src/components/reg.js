@@ -1,0 +1,106 @@
+import React, { useState, useEffect } from 'react';
+import Modal from './modal';
+import { Link } from "react-router-dom";
+import styles from './Header.module.css';
+
+
+const Register = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [user_id, setId] = useState('');
+  const [showModal, setShowModal] = useState(false);
+
+  const handleCloseModal = () => {
+    console.log("Closing modal");
+    setShowModal(false);
+  };
+
+ const handleMenuClick = () => {
+    setMenuOpen(!isMenuOpen);
+    setLoginFormOpen(false);
+  };
+
+  const handleLoginClick = () => {
+    setLoginFormOpen(!isLoginFormOpen);
+    {/* setMenuOpen(false);*/}
+  };
+
+  //formulario submissao --------------------------------------------------------------------------------------------------------
+
+  const [msg, setMsg] = useState("");
+  const [error, setError] = useState("");
+
+
+  const handleLoginSubmit = (event) => {
+    event.preventDefault();
+
+    const data = { email, password };
+
+    fetch('http://localhost:84/orgueduMain/login.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+    .then((response) => response.json())
+    .then((response) => {
+      console.log(response);
+      if(response[0].result === "Invalid username!" || response[0].result === "Invalid password!"){
+        setError(response[0].result);
+        alert(error);
+    }
+    else{
+        setMsg(response[0].result);
+        setTimeout(function(){
+            localStorage.setItem("login", true);
+            localStorage.setItem("name", response[0].name);
+            localStorage.setItem("user_id", response[0].id)
+            var name = localStorage.getItem('name');
+            var user_id = localStorage.getItem('user_id');
+            setId(user_id);
+            setName(name);
+            alert("Bem vindo " + name);
+        }, 5);
+    }
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setMenuOpen(false);
+      setLoginFormOpen(false);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+  return ( 
+    <form id='loginForm' onSubmit={handleLoginSubmit}>
+    <h3>register form</h3>
+    <input type="email" placeholder="enter your email" id="email" className={styles.box} value={email} onChange={(e) => setEmail(e.target.value)} />
+    <input type="password" placeholder="enter your password" id="password" className={styles.box} value={password} onChange={(e) => setPassword(e.target.value)} />
+    {showModal && (
+        <Modal 
+        title={<span>Log-in</span>}
+        
+        close={handleCloseModal}
+        />)}
+
+    <button type="submit" className="btn" id="login-btn">
+      <span className="text text1">login now</span>
+      <span className="text text2" aria-hidden="true">login now</span>
+    </button>
+  </form>   
+      
+  );
+};
+
+export default Register;
