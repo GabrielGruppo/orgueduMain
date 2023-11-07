@@ -82,16 +82,20 @@ const Register = () => {
 
   return (
     <form id='loginForm' onSubmit={handleLoginSubmit}>
-      <h3>register form</h3>
-      <input type="email" placeholder="enter your email" id="email" className={styles.box} value={email} onChange={(e) => setEmail(e.target.value)} />
-      <input type="password" placeholder="enter your password" id="password" className={styles.box} value={password} onChange={(e) => setPassword(e.target.value)} />
+      <h3>Register form</h3>
+      <input type="name" placeholder="Enter your name" id="name" className={styles.box} value={name} onChange={(e) => setName(e.target.value)} />
+      <input type="email" placeholder="Enter your email" id="email" className={styles.box} value={email} onChange={(e) => setEmail(e.target.value)} />
+      <input type="password" placeholder="Enter your password" id="password" className={styles.box} value={password} onChange={(e) => setPassword(e.target.value)} />
+      
+            
       {showModal && (
         <Modal
           title={<span>Log-in</span>}
           close={handleCloseModal}
         />)}
+      
 
-      <button type="submit" className="btn" id="login-btn">
+      <button type="submit" class="btn" id="login-btn">
         <span className="text text1">login now</span>
         <span className="text text2" aria-hidden="true">login now</span>
       </button>
