@@ -39,9 +39,9 @@ const Header = () => {
   const handleLoginSubmit = (event) => {
     event.preventDefault();
 
-    const data = { email, password };
+    const data = { acao:'login',email:email, password:password};
 
-    fetch('http://localhost:84/orgueduMain/login.php', {
+    fetch('http://localhost:84/orgueduMain/user_repositorio.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -51,24 +51,19 @@ const Header = () => {
     .then((response) => response.json())
     .then((response) => {
       console.log(response);
-      if(response[0].result === "Invalid username!" || response[0].result === "Invalid password!"){
-        setError(response[0].result);
-        alert(error);
+      if(response.message != "Loggedin successfully!"){
+        alert(response.message);
     }
     else{
-        setMsg(response[0].result);
-        setTimeout(function(){
-            localStorage.clear();
+            console.log(response.message);
+            window.location.reload();
             localStorage.setItem("login", 'true');
-            localStorage.setItem("name", response[0].name);
-            localStorage.setItem("user_id", response[0].id)
+            localStorage.setItem("name", response.name);
+            localStorage.setItem("user_id", response.id)
             var name = localStorage.getItem('name');
             var user_id = localStorage.getItem('user_id');
             setId(user_id);
             setName(name);
-            alert("Bem vindo " + name);
-            window.location.reload();
-        }, 5);
     }
       })
       .catch((error) => {
@@ -130,7 +125,7 @@ const Header = () => {
       </div> 
 
       
-        <div id='loginForm' className={`${styles.loginForm} ${isLoginFormOpen ? styles.active : ''}`} onSubmit={handleLoginSubmit}>
+        <div id='loginForm' className={`${styles.loginForm} ${isLoginFormOpen ? styles.active : ''}`}>
         
         {localStorage.getItem('login') == 'true' ? (
         // Renderiza o conteúdo do cabeçalho quando o usuário estiver logado
@@ -139,7 +134,7 @@ const Header = () => {
           <span className="text text2" aria-hidden="true">Logout</span>
         </button>
       ) : 
-      (<form /**id='loginForm' className={`${styles.loginForm} ${isLoginFormOpen ? styles.active : ''}`} onSubmit={handleLoginSubmit}*/>
+      (<form onSubmit={handleLoginSubmit}>
       <h3>login form</h3>
       <input type="email" placeholder="enter your email" id="email" className={styles.box} value={email} onChange={(e) => setEmail(e.target.value)} />
       <input type="password" placeholder="enter your password" id="password" className={styles.box} value={password} onChange={(e) => setPassword(e.target.value)} />
