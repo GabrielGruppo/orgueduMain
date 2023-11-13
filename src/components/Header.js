@@ -14,6 +14,7 @@ const Header = () => {
   const [user_id, setId] = useState('');
   const [showModal5, setShowModal] = useState(false);
 
+
   const handleCloseModal = () => {
     console.log("Closing modal");
     setShowModal(false);
@@ -57,7 +58,8 @@ const Header = () => {
     else{
         setMsg(response[0].result);
         setTimeout(function(){
-            localStorage.setItem("login", true);
+            localStorage.clear();
+            localStorage.setItem("login", 'true');
             localStorage.setItem("name", response[0].name);
             localStorage.setItem("user_id", response[0].id)
             var name = localStorage.getItem('name');
@@ -65,6 +67,7 @@ const Header = () => {
             setId(user_id);
             setName(name);
             alert("Bem vindo " + name);
+            window.location.reload();
         }, 5);
     }
       })
@@ -85,6 +88,14 @@ const Header = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  function logoutSubmit(){
+    localStorage.setItem("login", "");
+    localStorage.clear();
+    window.location.reload();
+}
+
+
   return (
     <header className={styles.header}>
       <a href="#" className={styles.logo}>
@@ -119,33 +130,43 @@ const Header = () => {
       </div> 
 
       
-        <form id='loginForm' className={`${styles.loginForm} ${isLoginFormOpen ? styles.active : ''}`} onSubmit={handleLoginSubmit}>
-          <h3>login form</h3>
-          <input type="email" placeholder="enter your email" id="email" className={styles.box} value={email} onChange={(e) => setEmail(e.target.value)} />
-          <input type="password" placeholder="enter your password" id="password" className={styles.box} value={password} onChange={(e) => setPassword(e.target.value)} />
-          <div className={styles.remember}>
-            <input type="checkbox" name="" id="remember" className={styles.remembercheck}/>
-            <label htmlFor="remember">Remember me</label>
+        <div id='loginForm' className={`${styles.loginForm} ${isLoginFormOpen ? styles.active : ''}`} onSubmit={handleLoginSubmit}>
+        
+        {localStorage.getItem('login') == 'true' ? (
+        // Renderiza o conteúdo do cabeçalho quando o usuário estiver logado
+          <button type="submit" className="btn" id="login-btn" onClick={logoutSubmit}>
+          <span className="text text1">Logout</span>
+          <span className="text text2" aria-hidden="true">Logout</span>
+        </button>
+      ) : 
+      (<form /**id='loginForm' className={`${styles.loginForm} ${isLoginFormOpen ? styles.active : ''}`} onSubmit={handleLoginSubmit}*/>
+      <h3>login form</h3>
+      <input type="email" placeholder="enter your email" id="email" className={styles.box} value={email} onChange={(e) => setEmail(e.target.value)} />
+      <input type="password" placeholder="enter your password" id="password" className={styles.box} value={password} onChange={(e) => setPassword(e.target.value)} />
+      <div className={styles.remember}>
+        <input type="checkbox" name="" id="remember" className={styles.remembercheck}/>
+        <label htmlFor="remember">Remember me</label>
+      </div>
+      <Link to="../pages/register" onClick={() => setShowModal(true)}>
+          <div className={styles.signup}>
+            <label>Don't have an account?</label>
           </div>
-          <Link to="../pages/register" onClick={() => setShowModal(true)}>
-              <div className={styles.signup}>
-                <label>Don't have an account?</label>
-              </div>
-            </Link>
-            
-            {showModal5 &&(
-                <Modal
-                  title={<span>Register</span>}
-                  content={<Register/>}
-                  close={handleCloseModal}
-                />
-              )}
+        </Link>
+        
+        {showModal5 &&(
+            <Modal
+              title={<span>Register</span>}
+              content={<Register/>}
+              close={handleCloseModal}
+            />
+          )}
 
-          <button type="submit" className="btn" id="login-btn">
-            <span className="text text1">login now</span>
-            <span className="text text2" aria-hidden="true">login now</span>
-          </button>
-        </form>
+      <button type="submit" className="btn" id="login-btn">
+        <span className="text text1">login now</span>
+        <span className="text text2" aria-hidden="true">login now</span>
+      </button>
+    </form>)}
+        </div>
       
     </header>
   );
