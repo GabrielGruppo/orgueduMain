@@ -113,6 +113,15 @@ const Header = () => {
         <a href="#contact" className={styles.hoverUnderline}>
           Contato
         </a>
+        {localStorage.getItem('login') !== 'true' ? <Link to="/pages/register" onClick={() => setShowModal(true)}> Registre-se </Link> : null}
+        
+        {showModal5 &&(
+            <Modal
+              title={<span>Register</span>}
+              content={<Register/>}
+              close={handleCloseModal}
+            />
+          )}
       </nav>
 
       <div className={styles.icons}>
@@ -120,7 +129,7 @@ const Header = () => {
           id="loginBtn"
           className={`fas fa-user`}
           onClick={handleLoginClick}
-        ></div>
+        >{localStorage.getItem('login') == 'true' ? <label></label> : null}</div>
        <div id="menuBtn" className={`fas fa-bars ${isMenuOpen ? styles.active : ''}`} onClick={handleMenuClick}></div>
       </div> 
 
@@ -128,7 +137,7 @@ const Header = () => {
         <div id='loginForm' className={`${styles.loginForm} ${isLoginFormOpen ? styles.active : ''}`}>
         
         {localStorage.getItem('login') == 'true' ? (
-        // Renderiza o conteúdo do cabeçalho quando o usuário estiver logado
+
           <button type="submit" className="btn" id="login-btn" onClick={logoutSubmit}>
           <span className="text text1">Logout</span>
           <span className="text text2" aria-hidden="true">Logout</span>
@@ -142,19 +151,6 @@ const Header = () => {
         <input type="checkbox" name="" id="remember" className={styles.remembercheck}/>
         <label htmlFor="remember">Remember me</label>
       </div>
-      <Link to="../pages/register" onClick={() => setShowModal(true)}>
-          <div className={styles.signup}>
-            <label>Don't have an account?</label>
-          </div>
-        </Link>
-        
-        {showModal5 &&(
-            <Modal
-              title={<span>Register</span>}
-              content={<Register/>}
-              close={handleCloseModal}
-            />
-          )}
 
       <button type="submit" className="btn" id="login-btn">
         <span className="text text1">login now</span>
