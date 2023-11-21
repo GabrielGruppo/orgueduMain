@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
-import events from "./events";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useEffect } from "react";
 
@@ -9,7 +8,7 @@ moment.locale("pt-BR");
 const localizer = momentLocalizer(moment);
 
 export default function ReactBigCalendar() {
-  const [eventsData, setEventsData] = useState(events);
+  const [eventsData, setEventsData] = useState([]);
 
   
   useEffect(() => {
@@ -25,9 +24,18 @@ export default function ReactBigCalendar() {
 			})
 			.then((response) => response.json())
 			.then((response) => {
-          let events = response;
-          for(let i=0;i<events.length;i++){
-            console.log(events[i]);
+
+          events = return.map((appointment)=>{
+            return {
+              id: training.id,
+              title: training.activity,
+              start: new Date(training.date),
+              end: new Date(training.date),
+              allDay: false
+            }
+          
+          for(let i=0;i<response.length;i++){
+            console.log(response[i]);
             
             setEventsData([
               ...eventsData,
@@ -38,6 +46,8 @@ export default function ReactBigCalendar() {
               }
             ]);
           }
+
+          console.log(eventsData);
 			})
 			.catch(
 				console.log()
