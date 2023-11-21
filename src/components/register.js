@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Modal from './modal';
 import { Outlet, Link } from "react-router-dom";
-import styles from '../components/Header.module.css';
+import styles from './Header.module.css';
 
 
 const Register = () => {
@@ -32,17 +32,23 @@ const Register = () => {
   };
 
   return (
+   
     <form id='registerForm' onSubmit={handleRegisterSubmit}>
       <h3>Register form</h3>
-      <input type="text" required placeholder="Enter your name" id='name' className={styles.box} value={name} onChange={(e) => setName(e.target.value)} />
-      <input type="email" required placeholder="Enter your email" id='email' className={styles.box} value={email} onChange={(e) => setEmail(e.target.value)} />
-      <input type="password" required placeholder="Enter your password" id='password' className={styles.box} value={password} onChange={(e) => setPassword(e.target.value)} />
+
+    
+
+      <input type="text" required placeholder="Enter your name" id='name' className='box' value={name} onChange={(e) => setName(e.target.value)} />
+      <input type="email" required placeholder="Enter your email" id='email' className='box' value={email} onChange={(e) => setEmail(e.target.value)} />
+      <input type="password" required placeholder="Enter your password" id='password' className='box' value={password} onChange={(e) => setPassword(e.target.value)} />
       
       <button type="submit" class="btn">
         <span className="text text1">Register</span>
         <span className="text text2" aria-hidden="true">Register</span>
       </button>
+    
     </form>
+   
   );
 };
 
