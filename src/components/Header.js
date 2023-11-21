@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './Header.module.css';
 import Modal from './modal';
 import { Link } from "react-router-dom";
-import Register from '../pages/register';
+import Register from './register';
 
 
 const Header = () => {
@@ -129,7 +129,14 @@ const Header = () => {
           id="loginBtn"
           className={`fas fa-user`}
           onClick={handleLoginClick}
-        >{localStorage.getItem('login') == 'true' ? <label></label> : null}</div>
+        >
+         
+        </div>
+        <div className={styles.logged}>
+          {localStorage.getItem('login') === 'true' ? 
+        <h6>Olá,  {localStorage.getItem('name')} </h6> : null}
+        </div>
+
        <div id="menuBtn" className={`fas fa-bars ${isMenuOpen ? styles.active : ''}`} onClick={handleMenuClick}></div>
       </div> 
 
@@ -138,7 +145,7 @@ const Header = () => {
         
         {localStorage.getItem('login') == 'true' ? (
 
-          <button type="submit" className="btn" id="login-btn" onClick={logoutSubmit}>
+          <button type="submit" className="btn logout" id="login-btn" onClick={logoutSubmit}>
           <span className="text text1">Logout</span>
           <span className="text text2" aria-hidden="true">Logout</span>
         </button>
@@ -147,10 +154,7 @@ const Header = () => {
       <h3>login form</h3>
       <input type="email" placeholder="enter your email" id="email" className={styles.box} value={email} onChange={(e) => setEmail(e.target.value)} />
       <input type="password" placeholder="enter your password" id="password" className={styles.box} value={password} onChange={(e) => setPassword(e.target.value)} />
-      <div className={styles.remember}>
-        <input type="checkbox" name="" id="remember" className={styles.remembercheck}/>
-        <label htmlFor="remember">Remember me</label>
-      </div>
+
 
       <button type="submit" className="btn" id="login-btn">
         <span className="text text1">login now</span>

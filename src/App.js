@@ -13,7 +13,7 @@ import Footer from './components/footer';
 import Notas from './pages/notas';
 import Calendar from './pages/calendar';
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
-import Register from './pages/register';
+import Register from './components/register';
 
 function App() {
   return (
