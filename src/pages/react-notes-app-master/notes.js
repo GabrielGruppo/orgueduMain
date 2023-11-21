@@ -33,6 +33,7 @@ const App = () => {
 	useEffect(() => {
 		localStorage.setItem(
 			'react-notes-app-data',
+			
 			JSON.stringify(notes)
 		);
 	}, [notes]);
