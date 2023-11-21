@@ -1,20 +1,15 @@
 import { useState, useEffect } from 'react';
-import { nanoid } from 'nanoid';
 import NotesList from './components/NotesList';
 import Search from './components/Search';
-
 const App = () => {
 	const [notes, setNotes] = useState([]);
-
 	const [searchText, setSearchText] = useState('');
-
 	const [darkMode, setDarkMode] = useState(false);
 
 	useEffect(() => {
 
-		const acao = {acao:'busca',id_user: localStorage.getItem("id_user")};
+		const acao = {acao:'busca',user_id: localStorage.getItem("user_id")};
 
-		if(localStorage.getItem('login')){ 
 			fetch('http://localhost:84/orgueduMain/nota_repositorio.php', {
 				method: 'POST',
 				headers: {
@@ -28,7 +23,10 @@ const App = () => {
 				if(savedNotes){
 					setNotes(savedNotes)};
 			})
-		}
+			.catch(
+				console.log()
+			);
+
 	}, []);
 
 
@@ -41,17 +39,15 @@ const App = () => {
 	}, [notes]);
 
 	const addNote = (text) => {
-		const date = new Date();
 		const newNote = {
 			text: text,
-			id_user: localStorage.getItem("user_id"),
+			user_id: localStorage.getItem("user_id"),
 			acao: 'insert'
 		};
 
 		const newNotes = [...notes, newNote];
 		setNotes(newNotes);
-		
-		if(localStorage.getItem('login')){ 
+
 		fetch('http://localhost:84/orgueduMain/nota_repositorio.php', {
 			method: 'POST',
 			headers: {
@@ -59,17 +55,19 @@ const App = () => {
 			},
 			body: JSON.stringify(newNote),
 		  })
-	};
+		  .catch(function (error) {
+			console.log(
+			  "Erro: " + error.message,
+			);
+		  });
 
 }
 
 	
-
 	const deleteNote = (id) => {
-		
+
 		const acao = {acao:'delete',id:id};
 
-		if(localStorage.getItem('login')){ 
 		fetch('http://localhost:84/orgueduMain/nota_repositorio.php', {
 			method: 'POST',
 			headers: {
@@ -77,12 +75,12 @@ const App = () => {
 			},
 			body: JSON.stringify(acao),
 		  })
-		};
+
+
 
 		const newNotes = notes.filter((note) => note.id !== id);
 		setNotes(newNotes);
 	};
-
 	return (
 		<div className={`${darkMode && 'dark-mode'}`}>
 			<div className='container'>
@@ -98,5 +96,4 @@ const App = () => {
 		</div>
 	);
 };
-
 export default App;

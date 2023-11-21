@@ -1,94 +1,94 @@
-import { Scheduler } from "@aldabil/react-scheduler";
-import { useState, useEffect } from 'react';
+import React, { useState } from "react";
+import { Calendar, momentLocalizer } from "react-big-calendar";
+import moment from "moment";
+import events from "./events";
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import { useEffect } from "react";
 
+moment.locale("pt-BR");
+const localizer = momentLocalizer(moment);
 
-export default function Calendar() {
-   
-    const EVENTS = [
-      {
-        event_id: 10,
-        title: "Event 1",
-        start: new Date(new Date(new Date().setHours(10)).setMinutes(0)),
-        end: new Date(new Date(new Date().setHours(11)).setMinutes(0))
-      }
-    ];
+export default function ReactBigCalendar() {
+  const [eventsData, setEventsData] = useState(events);
 
-    useEffect(() => {
-      const data = {action:'busca',user_id: localStorage.getItem("user_id")};
+  
+  useEffect(() => {
 
-      fetch('http://localhost:84/orgueduMain/event_repositorio.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-        })
-        .then((response) => response.json())
-        .then((response) => {
-          EVENTS.push(...response);
-          console.log(EVENTS);
-        })
+      const data = {acao:'busca',user_id: localStorage.getItem("user_id")};
 
-	}, []);
+			fetch('http://localhost:84/orgueduMain/event_repositorio.php', {
+				method: 'POST',
+				headers: {
+				'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(data),
+			})
+			.then((response) => response.json())
+			.then((response) => {
+          let events = response;
+          for(let i=0;i<events.length;i++){
+            console.log(events[i]);
+            
+            setEventsData([
+              ...eventsData,
+              {
+                start:new Date(events[i].inicio),
+                end:new Date(events[i].fim),
+                title:events[i].titulo
+              }
+            ]);
+          }
+			})
+			.catch(
+				console.log()
+			);
 
-  const handleConfirm = async (event, action) => {
-    /**
-     * My end-point does not return anything
-     * also does not have event_id
-     * so deal with it with local saved
-     */
-    let returnedEvent;
+  }, []);
 
-    if (action === "edit") {
-      returnedEvent = event;
-      /** await editEventOnServer() */
-    } else if (action === "create") {
+  const handleSelect = ({ start, end }) => {
+    console.log(start);
+    console.log(end);
+    const title = window.prompt("New Event name");
+    if (title)
+      setEventsData([
+        ...eventsData,
+        {
+          start,
+          end,
+          title
+        }
+      ]);
 
-      const data = {
-        title: event.title,
-        event_start: event.start,
-        event_end: event.end,
-        action: action,
+      const datafetch = {
+        acao: 'insert',
+        title,
+        start,
+        end,
         user_id: localStorage.getItem('user_id')
       };
 
       fetch('http://localhost:84/orgueduMain/event_repositorio.php', {
-			method: 'POST',
-			headers: {
-			  'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(data),
-		  })
-      
+				method: 'POST',
+				headers: {
+				'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(datafetch),
+			})
 
-
-      returnedEvent = {
-        ...event,
-        event_id: Math.random()
-      };
-      /** await addEventOnServer() */
-    }
-
-    return returnedEvent;
   };
-
-  const handleDelete = async (deletedId) => {
-    console.log(deletedId);
-    /** await deleteEventOnServer() */
-
-    /**
-     * Just return the deleted id
-     * as long as you sure the end-point request was success
-     */
-    return deletedId;
-  };
-
   return (
-    <Scheduler
-      onConfirm={handleConfirm}
-      onDelete={handleDelete}
-
-      events={EVENTS}
-    />
+    <div className="App">
+      <Calendar
+        views={["day", "work_week"]}
+        selectable
+        localizer={localizer}
+        defaultDate={new Date()}
+        defaultView="day"
+        events={eventsData}
+        style={{ height: "75vh" }}
+        onSelectEvent={(event) => alert(event.title)}
+        onSelectSlot={handleSelect}
+      />
+    </div>
   );
 }

@@ -13,10 +13,11 @@ import Footer from './components/footer';
 import Notas from './pages/notas';
 import Calendar from './pages/calendar';
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
+import Register from './components/register';
 
 function App() {
   return (
-    <BrowserRouter> 
+    <BrowserRouter>
       <div className="App">
         <Header />
         <Home />
@@ -28,13 +29,12 @@ function App() {
         <Routes>
           <Route path='/notas' element={<Notas />} />
           <Route path='/calendar' element={<Calendar />} />
+          <Route path="/register" element={<Register />} /> 
         </Routes>
-
       </div>
-
-      
     </BrowserRouter>
   );
 }
+
 
 export default App;

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styles from './Header.module.css';
 import Modal from './modal';
 import { Link } from "react-router-dom";
-import Register from './reg';
+import Register from './register';
+
 
 const Header = () => {
   const [isMenuOpen, setMenuOpen] = useState(false); 
@@ -11,7 +12,8 @@ const Header = () => {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [user_id, setId] = useState('');
-  const [showModal, setShowModal] = useState(false);
+  const [showModal5, setShowModal] = useState(false);
+
 
   const handleCloseModal = () => {
     console.log("Closing modal");
@@ -37,9 +39,9 @@ const Header = () => {
   const handleLoginSubmit = (event) => {
     event.preventDefault();
 
-    const data = { email, password };
+    const data = { acao:'login',email:email, password:password};
 
-    fetch('http://localhost:84/orgueduMain/login.php', {
+    fetch('http://localhost:84/orgueduMain/user_repositorio.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -49,22 +51,19 @@ const Header = () => {
     .then((response) => response.json())
     .then((response) => {
       console.log(response);
-      if(response[0].result === "Invalid username!" || response[0].result === "Invalid password!"){
-        setError(response[0].result);
-        alert(error);
+      if(response.message != "Loggedin successfully!"){
+        alert(response.message);
     }
     else{
-        setMsg(response[0].result);
-        setTimeout(function(){
-            localStorage.setItem("login", true);
-            localStorage.setItem("name", response[0].name);
-            localStorage.setItem("user_id", response[0].id)
+            console.log(response.message);
+            window.location.reload();
+            localStorage.setItem("login", 'true');
+            localStorage.setItem("name", response.name);
+            localStorage.setItem("user_id", response.id)
             var name = localStorage.getItem('name');
             var user_id = localStorage.getItem('user_id');
             setId(user_id);
             setName(name);
-            alert("Bem vindo " + name);
-        }, 5);
     }
       })
       .catch((error) => {
@@ -84,6 +83,14 @@ const Header = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  function logoutSubmit(){
+    localStorage.setItem("login", "");
+    localStorage.clear();
+    window.location.reload();
+}
+
+
   return (
     <header className={styles.header}>
       <a href="#" className={styles.logo}>
@@ -106,6 +113,15 @@ const Header = () => {
         <a href="#contact" className={styles.hoverUnderline}>
           Contato
         </a>
+        {localStorage.getItem('login') !== 'true' ? <Link to="/pages/register" onClick={() => setShowModal(true)}> Registre-se </Link> : null}
+        
+        {showModal5 &&(
+            <Modal
+              title={<span>Register</span>}
+              content={<Register/>}
+              close={handleCloseModal}
+            />
+          )}
       </nav>
 
       <div className={styles.icons}>
@@ -113,36 +129,39 @@ const Header = () => {
           id="loginBtn"
           className={`fas fa-user`}
           onClick={handleLoginClick}
-        ></div>
+        >
+         
+        </div>
+        <div className={styles.logged}>
+          {localStorage.getItem('login') === 'true' ? 
+        <h6>Olá,  {localStorage.getItem('name')} </h6> : null}
+        </div>
+
        <div id="menuBtn" className={`fas fa-bars ${isMenuOpen ? styles.active : ''}`} onClick={handleMenuClick}></div>
       </div> 
 
       
-        <form id='loginForm' className={`${styles.loginForm} ${isLoginFormOpen ? styles.active : ''}`} onSubmit={handleLoginSubmit}>
-          <h3>login form</h3>
-          <input type="email" placeholder="enter your email" id="email" className={styles.box} value={email} onChange={(e) => setEmail(e.target.value)} />
-          <input type="password" placeholder="enter your password" id="password" className={styles.box} value={password} onChange={(e) => setPassword(e.target.value)} />
-          <div className={styles.remember}>
-            <input type="checkbox" name="" id="remember" className={styles.remembercheck}/>
-            <label htmlFor="remember">Remember me</label>
-          </div>
-           <Link to="/" onClick={() => setShowModal(true)}>
-              <div className={styles.signup}>
-                <label>Don't have an account?</label>
-              </div>
-            </Link>
-          {showModal && (
-              <Modal 
-              title={<span>Log-in</span>}
-              
-              close={handleCloseModal}
-              />)}
+        <div id='loginForm' className={`${styles.loginForm} ${isLoginFormOpen ? styles.active : ''}`}>
+        
+        {localStorage.getItem('login') == 'true' ? (
 
-          <button type="submit" className="btn" id="login-btn">
-            <span className="text text1">login now</span>
-            <span className="text text2" aria-hidden="true">login now</span>
-          </button>
-        </form>
+          <button type="submit" className="btn logout" id="login-btn" onClick={logoutSubmit}>
+          <span className="text text1">Logout</span>
+          <span className="text text2" aria-hidden="true">Logout</span>
+        </button>
+      ) : 
+      (<form onSubmit={handleLoginSubmit}>
+      <h3>login form</h3>
+      <input type="email" placeholder="enter your email" id="email" className={styles.box} value={email} onChange={(e) => setEmail(e.target.value)} />
+      <input type="password" placeholder="enter your password" id="password" className={styles.box} value={password} onChange={(e) => setPassword(e.target.value)} />
+
+
+      <button type="submit" className="btn" id="login-btn">
+        <span className="text text1">login now</span>
+        <span className="text text2" aria-hidden="true">login now</span>
+      </button>
+    </form>)}
+        </div>
       
     </header>
   );

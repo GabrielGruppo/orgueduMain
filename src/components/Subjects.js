@@ -12,6 +12,7 @@ import Calendar from '../pages/calendar';
 import { Link } from "react-router-dom";
 import { useState } from 'react';
 import { QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import Register from './register';
 
 const queryClient = new QueryClient();
 
@@ -20,8 +21,6 @@ const Subjects = () => {
   const [showModal2, setShowModal2] = useState(false);
   const [showModal3, setShowModal3] = useState(false);
   const [showModal4, setShowModal4] = useState(false);
-  const [showModal5, setShowModal5] = useState(false);
-  const [showModal6, setShowModal6] = useState(false);
 
   const handleCloseModal = () => {
     console.log("Closing modal");
@@ -43,15 +42,7 @@ const Subjects = () => {
     setShowModal4(false);
   };
 
-  const handleCloseModal5 = () => {
-    console.log("Closing modal");
-    setShowModal5(false);
-  };
 
-  const handleCloseModal6 = () => {
-    console.log("Closing modal");
-    setShowModal6(false);
-  };
 
   
   
@@ -116,7 +107,6 @@ const Subjects = () => {
                 content={<Alarm />}
                 close={handleCloseModal4}
                 />)}
-        
       </div>
     </section>
   );

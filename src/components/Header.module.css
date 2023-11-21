@@ -87,7 +87,13 @@
   .header .icons div:hover {
     color: var(--primary-color);
   }
-  
+  .logged {
+    pointer-events: none;
+  }
+
+  .icons {
+    display: flex;
+  }
   #menuBtn {
     display: none;
   }
@@ -98,7 +104,6 @@
     right: -105%;
     background: var(--white);
     box-shadow: 0.5rem;
-    width: 35rem;
     box-shadow: var(--box-shadow);
     padding: 2rem;
   }

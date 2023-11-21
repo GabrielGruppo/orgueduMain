@@ -26,11 +26,11 @@ CREATE TABLE note(
 );
 
 
-CREATE TABLE schedulerevent(
+CREATE TABLE evento(
     id int NOT NULL AUTO_INCREMENT,
-    title varchar(200),
-    event_start varchar(200),
-    event_end varchar(200),
+    titulo varchar(200),
+    inicio varchar(200),
+    fim varchar(200),
     user_id int NOT NULL,
     KEY fk_event_user_id (user_id),
     CONSTRAINT fk_event_user FOREIGN KEY (user_id) REFERENCES user (id),
