@@ -4,7 +4,8 @@ import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useEffect } from "react";
 
-moment.locale("pt-BR");
+require('moment/locale/pt.js')
+
 const localizer = momentLocalizer(moment);
 
 export default function ReactBigCalendar() {
@@ -14,6 +15,7 @@ export default function ReactBigCalendar() {
   useEffect(() => {
 
       const data = {acao:'busca',user_id: localStorage.getItem("user_id")};
+
 
 			fetch('http://localhost:84/orgueduMain/event_repositorio.php', {
 				method: 'POST',
@@ -25,32 +27,18 @@ export default function ReactBigCalendar() {
 			.then((response) => response.json())
 			.then((response) => {
 
-          events = return.map((appointment)=>{
-            return {
-              id: training.id,
-              title: training.activity,
-              start: new Date(training.date),
-              end: new Date(training.date),
-              allDay: false
-            }
-          
-          for(let i=0;i<response.length;i++){
-            console.log(response[i]);
-            
-            setEventsData([
-              ...eventsData,
-              {
-                start:new Date(events[i].inicio),
-                end:new Date(events[i].fim),
-                title:events[i].titulo
-              }
-            ]);
-          }
+        const events = response;
 
-          console.log(eventsData);
-			})
+        
+        for(let i=0;i<events.length;i++){
+          const event = {id:events[i].id,title:events[i].titulo,start:new Date(events[i].inicio),end:new Date(events[i].fim)};
+          setEventsData((prevdata) => [
+            ...prevdata,
+            event,
+        ]);
+        }})
 			.catch(
-				console.log()
+				
 			);
 
   }, []);
@@ -86,6 +74,38 @@ export default function ReactBigCalendar() {
 			})
 
   };
+
+  const selectEvent = (event) => {
+    if (window.confirm(event.title + ":  Você deseja excluir este evento?") == true) {
+      
+        const deleteEvent = eventsData;
+        for(let i=0;i<deleteEvent.length;i++){
+          if(event.id == deleteEvent[i].id){
+            deleteEvent.splice(i,1);
+            break;
+          }
+        }
+
+        setEventsData(deleteEvent);
+        
+      const datafetch = {acao:'delete',id:event.id};
+      fetch('http://localhost:84/orgueduMain/event_repositorio.php', {
+				method: 'POST',
+				headers: {
+				'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(datafetch),
+			})
+      
+    } else {
+      console.log('Cancelada a exclusão');
+    }
+  };
+
+  let formato = {
+    timeGutterFormat: 'HH:mm',
+  };
+
   return (
     <div className="App">
       <Calendar
@@ -96,8 +116,21 @@ export default function ReactBigCalendar() {
         defaultView="day"
         events={eventsData}
         style={{ height: "75vh" }}
-        onSelectEvent={(event) => alert(event.title)}
+        onSelectEvent={selectEvent}
         onSelectSlot={handleSelect}
+
+        min={new Date(2023, 11, 0, 7, 0, 0)}
+        max={new Date(2023, 11, 0, 23, 0, 0)} 
+        formats={formato}
+
+        messages={{
+          next: "Proximo",
+          previous: "Anterior",
+          today: "Hoje",
+          month: "Mês",
+          work_week: "Semana",
+          day: "Dia"
+        }}
       />
     </div>
   );

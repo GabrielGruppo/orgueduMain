@@ -66,7 +66,7 @@ const Subjects = () => {
               close={handleCloseModal}
               />)}
 
-          <Link to="/calendar"  onClick={() => setShowModal2(true)}>
+          <Link to="/calendar"  onClick={() => localStorage.getItem('login') == 'true' ? setShowModal2(true) : alert('Você precisa estar logado para acessar este item!')}>
             <div className={styles.box}>
               <img src={calendar} alt />
               <h3>calendário</h3>
@@ -80,7 +80,7 @@ const Subjects = () => {
               close={handleCloseModal2}
               />)}
             
-            <Link to="/notas" onClick={() => setShowModal3(true)}>  
+            <Link to="/notas" onClick={() =>  localStorage.getItem('login') == 'true' ? setShowModal3(true) : alert('Você precisa estar logado para acessar este item!')}>  
               <div className={styles.box}>
                 <img src={notas} alt />
                 <h3>Notas</h3>
