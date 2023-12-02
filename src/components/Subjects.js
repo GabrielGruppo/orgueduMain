@@ -12,7 +12,7 @@ import Calendar from '../pages/calendar';
 import { Link } from "react-router-dom";
 import { useState } from 'react';
 import { QueryClient, QueryClientProvider} from '@tanstack/react-query';
-import Register from './register';
+import Register from '../pages/register';
 
 const queryClient = new QueryClient();
 

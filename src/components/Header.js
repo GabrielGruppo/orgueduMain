@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './Header.module.css';
 import Modal from './modal';
 import { Link } from "react-router-dom";
-import Register from './register';
+import Register from '../pages/register';
 
 
 const Header = () => {
@@ -12,12 +12,12 @@ const Header = () => {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [user_id, setId] = useState('');
-  const [showModal5, setShowModal] = useState(false);
+  const [showModal5, setShowModal5] = useState(false);
 
 
-  const handleCloseModal = () => {
+  const handleCloseModal5 = () => {
     console.log("Closing modal");
-    setShowModal(false);
+    setShowModal5(false);
   };
 
  const handleMenuClick = () => {
@@ -113,17 +113,16 @@ const Header = () => {
         <a href="#contact" className={styles.hoverUnderline}>
           Contato
         </a>
-        {localStorage.getItem('login') !== 'true' ? <Link to="/pages/register" onClick={() => setShowModal(true)}> Registre-se </Link> : null}
+        {localStorage.getItem('login') !== 'true' ? <Link to="/pages/register" onClick={() => setShowModal5(true)}> Registre-se </Link> : null}
         
-        {showModal5 &&(
-            <Modal
-              title={<span>Register</span>}
-              content={<Register/>}
-              close={handleCloseModal}
-            />
-          )}
+       
       </nav>
-
+      {showModal5 && (
+                    <Modal 
+                    title={<span>Register</span>}
+                    content={<Register />}
+                    close={handleCloseModal5}
+                    />)}
       <div className={styles.icons}>
         <div
           id="loginBtn"
@@ -162,6 +161,8 @@ const Header = () => {
       </button>
     </form>)}
         </div>
+
+        
       
     </header>
   );
