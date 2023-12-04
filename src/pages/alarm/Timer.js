@@ -71,7 +71,7 @@ function Timer() {
  
   if(seconds < 10) seconds = '0'+seconds;
  
-  if (seconds <= 10 && minutes == 0) {
+  if (seconds == 0 && minutes == 0) {
       return playSound();
   }
 
