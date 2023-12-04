@@ -59,6 +59,7 @@ const Header = () => {
             window.location.reload();
             localStorage.setItem("login", 'true');
             localStorage.setItem("name", response.name);
+            localStorage.setItem("email", response.email);
             localStorage.setItem("user_id", response.id)
             var name = localStorage.getItem('name');
             var user_id = localStorage.getItem('user_id');
@@ -113,7 +114,7 @@ const Header = () => {
         <a href="#contact" className={styles.hoverUnderline}>
           Contato
         </a>
-        {localStorage.getItem('login') !== 'true' ? <Link to="/pages/register" onClick={() => setShowModal5(true)}> Registre-se </Link> : null}
+        {localStorage.getItem('login') !== 'true' ? <Link to="/pages/register" onClick={() => setShowModal5(true)}> Registre-se </Link> : <Link to="/pages/register" onClick={() => setShowModal5(true)}> Atualizar dados </Link>}
         
        
       </nav>
