@@ -5,13 +5,15 @@ import PauseButton from "./PauseButton";
 import SettingsButton from "./SettingsButton";
 import {useContext, useState, useEffect, useRef} from "react";
 import SettingsContext from "./SettingsContext";
+import useSound from 'use-sound';
+import pSound from "./alarme.mp3";
 
 const red = '#f54e4e';
 const green = '#12c2b9';
 
 function Timer() {
   const settingsInfo = useContext(SettingsContext);
-
+  const [playSound] = useSound(pSound);
   const [isPaused, setIsPaused] = useState(true);
   const [mode, setMode] = useState('work'); // work/break/null
   const [secondsLeft, setSecondsLeft] = useState(0);
@@ -59,10 +61,19 @@ function Timer() {
     ? settingsInfo.workMinutes * 60
     : settingsInfo.breakMinutes * 60;
   const percentage = Math.round(secondsLeft / totalSeconds * 100);
-
+  
+  const playit = playSound;
+  
+  
   const minutes = Math.floor(secondsLeft / 60);
+ 
   let seconds = secondsLeft % 60;
+ 
   if(seconds < 10) seconds = '0'+seconds;
+ 
+  if (seconds <= 10 && minutes == 0) {
+      return playSound();
+  }
 
   return (
     <div>
