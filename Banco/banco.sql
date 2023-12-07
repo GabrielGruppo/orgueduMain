@@ -9,8 +9,6 @@ CREATE TABLE user(
     email varchar(255) NOT NULL,
     password varchar(60) NOT NULL,
     creation_date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    ativo tinyint NOT NULL DEFAULT '0',
-    adm tinyint NOT NULL DEFAULT '0',
     PRIMARY KEY(id)
 );
 

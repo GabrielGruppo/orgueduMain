@@ -27,6 +27,7 @@ function Timer() {
     setSecondsLeft(secondsLeftRef.current);
   }
 
+
   useEffect(() => {
 
     function switchMode() {
@@ -74,6 +75,7 @@ function Timer() {
   if (seconds == 0 && minutes == 0) {
       return playSound();
   }
+
 
   return (
     <div>

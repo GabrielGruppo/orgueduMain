@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, Link } from "react-router-dom";
 import styles from './register.module.css';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -46,10 +47,11 @@ const Register = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
-    }).catch((error) => {
-      alert(error.message)});
+    })
+    //.catch((error) => {
+    //  alert(error.message)});
 
-    localStorage.getItem('login') === 'true' ? alert('Usuario atualizado') : alert('Você foi cadastrado com sucesso'); 
+    localStorage.getItem('login') === 'true' ? toast.success('Usuario atualizado') : toast.success('Você foi cadastrado com sucesso'); 
     window.location.reload();
   
 
@@ -62,7 +64,7 @@ const Register = () => {
 
     
 
-      <input type="text" required placeholder="Enter your name" id='name' className={styles.box} value={name} onChange={(e) => setName(e.target.value)} />
+      <input type="text" required placeholder="Enter your name" id='name' className={styles.box} value={name.slice(0,15)} onChange={(e) => setName(e.target.value)} />
       <input type="email" required placeholder="Enter your email" id='email' className={styles.box} value={email} onChange={(e) => setEmail(e.target.value)} />
       {localStorage.getItem('login') !== 'true' ? 
       <input type="password" required placeholder="Enter your password" id='password' className={styles.box} value={password} onChange={(e) => setPassword(e.target.value)} />
@@ -72,7 +74,7 @@ const Register = () => {
         <span className="text text1">Register</span>
         <span className="text text2" aria-hidden="true">Register</span>
       </button>
-    
+      <ToastContainer />
     </form>
     </div>
    
