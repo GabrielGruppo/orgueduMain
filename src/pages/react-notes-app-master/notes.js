@@ -1,18 +1,25 @@
 import { useState, useEffect } from 'react';
 import NotesList from './components/NotesList';
 import Search from './components/Search';
+import { useNavigate } from 'react-router-dom';
 const App = () => {
 	const [notes, setNotes] = useState([]);
 	const [searchText, setSearchText] = useState('');
 	const [darkMode, setDarkMode] = useState(false);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 
+		if(localStorage.getItem('login') != 'true'){
+			navigate('/');
+			window.location.reload();
+		  }else{
+		
 		//quando usuario abrir a pagina, vai executar essa função que vai buscar todas as notas salvas pelo usuario
 
 		const acao = {acao:'busca',user_id: localStorage.getItem("user_id")};
 
-			fetch('http://localhost:84/orgueduMain/nota_repositorio.php', {
+			fetch('http://localhost:84/orgueduMain/nota_repositorio.php', { //envia para o php nota_repositorio
 				method: 'POST',
 				headers: {
 				'Content-Type': 'application/json',
@@ -25,9 +32,8 @@ const App = () => {
 				if(savedNotes){
 					setNotes(savedNotes)}; // inserir novas notas na const notes
 			})
-			.catch(
-				console.log()
-			);
+
+		  }
 
 	}, []);
 
@@ -59,11 +65,6 @@ const App = () => {
 			},
 			body: JSON.stringify(newNote),
 		  })
-		  .catch(function (error) {
-			console.log(
-			  "Erro: " + error.message,
-			);
-		  });
 
 }
 

@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Outlet, Link } from "react-router-dom";
 import styles from './register.module.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
+
 
 const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const navigate = useNavigate();
  
-  const [error, setError] = useState(''); // Define 'error'
-  const [msg, setMsg] = useState(''); // Define 'msg'
+
 
 
   useEffect(() => {
@@ -27,11 +28,9 @@ const Register = () => {
    
 
     if(localStorage.getItem('login') === 'true'){
-      let acao = 'update';
-      let id = localStorage.getItem('user_id');
       localStorage.setItem('name',name);
       localStorage.setItem('email',email);
-    } else { let acao = 'insert';}
+    }
     
     let acao = localStorage.getItem('login') === 'true' ? 'update' : 'insert';
     let id = localStorage.getItem('login') === 'true' ? localStorage.getItem('user_id') : null;
@@ -46,13 +45,14 @@ const Register = () => {
       },
       body: JSON.stringify(data),
     })
-    //.catch((error) => {
-    //  alert(error.message)});
 
     
-    //window.location.reload();
-    localStorage.getItem('login') === 'true' ? toast.success('Usuario atualizado') : toast.success('Você foi cadastrado com sucesso'); 
     
+    localStorage.getItem('login') === 'true' ? toast.success('Usuario atualizado') : toast.success('Você foi cadastrado com sucesso'); 
+    setTimeout(() => {
+      navigate('/');
+      window.location.reload();
+    }, "1000");
   
 
   };

@@ -12,8 +12,6 @@ import Calendar from '../pages/calendar';
 import { Link } from "react-router-dom";
 import { useState } from 'react';
 import { QueryClient, QueryClientProvider} from '@tanstack/react-query';
-import Register from '../pages/register';
-
 const queryClient = new QueryClient();
 
 const Subjects = () => {
@@ -66,7 +64,7 @@ const Subjects = () => {
               close={handleCloseModal}
               />)}
 
-          <Link to="/calendar"  onClick={() => localStorage.getItem('login') == 'true' ? setShowModal2(true) : alert('Você precisa estar logado para acessar este item!')}>
+          <Link to="/calendar"  onClick={() =>  setShowModal2(true)}>
             <div className={styles.box}>
               <img src={calendar} alt />
               <h3>calendário</h3>
@@ -80,7 +78,7 @@ const Subjects = () => {
               close={handleCloseModal2}
               />)}
             
-            <Link to="/notas" onClick={() =>  localStorage.getItem('login') == 'true' ? setShowModal3(true) : alert('Você precisa estar logado para acessar este item!')}>  
+            <Link to="/notas" onClick={() => setShowModal3(true)}>  
               <div className={styles.box}>
                 <img src={notas} alt />
                 <h3>Notas</h3>

@@ -3,16 +3,31 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 require('moment/locale/pt.js')
 
 const localizer = momentLocalizer(moment);
 
+
+
+
 export default function ReactBigCalendar() {
   const [eventsData, setEventsData] = useState([]);
+  const navigate = useNavigate();
+
+
 
   
   useEffect(() => {
+
+    //evitar que usuario não logado use o calendario
+
+    if(localStorage.getItem('login') != 'true'){
+      navigate('/');
+      window.location.reload();
+    }else{
 
       const data = {acao:'busca',user_id: localStorage.getItem("user_id")};
 
@@ -39,9 +54,8 @@ export default function ReactBigCalendar() {
             event,
         ]);
         }})
-			.catch(
-				
-			);
+
+      }
 
   }, []);
 

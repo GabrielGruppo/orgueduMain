@@ -9,8 +9,6 @@ const Header = () => {
   const [isLoginFormOpen, setLoginFormOpen] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
-  const [user_id, setId] = useState('');
   const [showModal5, setShowModal5] = useState(false);
 
 
@@ -26,13 +24,12 @@ const Header = () => {
 
   const handleLoginClick = () => {
     setLoginFormOpen(!isLoginFormOpen);
-    {/* setMenuOpen(false);*/}
+    {setMenuOpen(false);}
   };
 
   //formulario submissao --------------------------------------------------------------------------------------------------------
 
-  const [msg, setMsg] = useState("");
-  const [error, setError] = useState("");
+
 
 
   const handleLoginSubmit = (event) => {
@@ -60,10 +57,6 @@ const Header = () => {
             localStorage.setItem("name", response.name);
             localStorage.setItem("email", response.email);
             localStorage.setItem("user_id", response.id)
-            var name = localStorage.getItem('name');
-            var user_id = localStorage.getItem('user_id');
-            setId(user_id);
-            setName(name);
     }
       })
       .catch((error) => {
