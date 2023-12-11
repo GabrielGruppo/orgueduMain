@@ -4,7 +4,6 @@ import Modal from './modal';
 import { Link } from "react-router-dom";
 import Register from '../pages/register';
 
-
 const Header = () => {
   const [isMenuOpen, setMenuOpen] = useState(false); 
   const [isLoginFormOpen, setLoginFormOpen] = useState(false);
@@ -150,6 +149,8 @@ const Header = () => {
           <span className="text text2" aria-hidden="true">Logout</span>
         </button>
       ) : 
+
+      // executar formulario de login
       (<form onSubmit={handleLoginSubmit}>
       <h3>login form</h3>
       <input type="email" placeholder="enter your email" id="email" className={styles.box} value={email} onChange={(e) => setEmail(e.target.value)} />

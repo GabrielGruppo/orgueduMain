@@ -17,6 +17,8 @@ export default function ReactBigCalendar() {
       const data = {acao:'busca',user_id: localStorage.getItem("user_id")};
 
 
+      //busca todos os eventos do usuario com este ID salvos no banco de dados
+
 			fetch('http://localhost:84/orgueduMain/event_repositorio.php', {
 				method: 'POST',
 				headers: {
@@ -27,9 +29,9 @@ export default function ReactBigCalendar() {
 			.then((response) => response.json())
 			.then((response) => {
 
-        const events = response;
+        const events = response; //variavel recebe todos os objetos eventos contidos em response
 
-        
+        //coloca todos os eventos que a API PHP mandou na const eventsData
         for(let i=0;i<events.length;i++){
           const event = {id:events[i].id,title:events[i].titulo,start:new Date(events[i].inicio),end:new Date(events[i].fim)};
           setEventsData((prevdata) => [
@@ -42,6 +44,8 @@ export default function ReactBigCalendar() {
 			);
 
   }, []);
+
+  //criar novo evento
 
   const handleSelect = ({ start, end }) => {
     console.log(start);
@@ -56,6 +60,8 @@ export default function ReactBigCalendar() {
           title
         }
       ]);
+
+      //salva evento no banco, mandando a const datafetch para a API PHP
 
       const datafetch = {
         acao: 'insert',

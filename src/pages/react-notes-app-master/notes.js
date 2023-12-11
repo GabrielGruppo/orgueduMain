@@ -8,6 +8,8 @@ const App = () => {
 
 	useEffect(() => {
 
+		//quando usuario abrir a pagina, vai executar essa função que vai buscar todas as notas salvas pelo usuario
+
 		const acao = {acao:'busca',user_id: localStorage.getItem("user_id")};
 
 			fetch('http://localhost:84/orgueduMain/nota_repositorio.php', {
@@ -21,7 +23,7 @@ const App = () => {
 			.then((response) => {
 				const savedNotes =  response;
 				if(savedNotes){
-					setNotes(savedNotes)};
+					setNotes(savedNotes)}; // inserir novas notas na const notes
 			})
 			.catch(
 				console.log()
@@ -38,6 +40,8 @@ const App = () => {
 		) ;
 	}, [notes]);
 
+	//funcao para criar nova nota e enviar para api
+	
 	const addNote = (text) => {
 		const newNote = {
 			text: text,

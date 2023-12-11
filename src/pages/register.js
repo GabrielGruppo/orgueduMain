@@ -38,8 +38,6 @@ const Register = () => {
 
     const data = {acao:acao, email:email, password:password, name:name, id:id };
 
-    console.log(data);
-
 
     fetch('http://localhost:84/orguedumain/user_repositorio.php', {
       method: 'POST',
@@ -51,8 +49,10 @@ const Register = () => {
     //.catch((error) => {
     //  alert(error.message)});
 
+    
+    //window.location.reload();
     localStorage.getItem('login') === 'true' ? toast.success('Usuario atualizado') : toast.success('Você foi cadastrado com sucesso'); 
-    window.location.reload();
+    
   
 
   };
